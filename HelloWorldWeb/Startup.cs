@@ -29,9 +29,9 @@ namespace HelloWorldWeb
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
             services.AddSingleton<ITeamService>(new TeamService());
             //services.AddSingleton(typeof(ITeamService), typeof(TeamService));
+            services.AddControllersWithViews();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
