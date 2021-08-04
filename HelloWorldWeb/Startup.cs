@@ -31,6 +31,7 @@ namespace HelloWorldWeb
         {
             services.AddControllersWithViews();
             services.AddSingleton<ITeamService>(new TeamService());
+            //services.AddSingleton(typeof(ITeamService), typeof(TeamService));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
