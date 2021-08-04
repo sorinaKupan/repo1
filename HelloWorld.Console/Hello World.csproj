@@ -5,5 +5,7 @@
     <TargetFramework>net5.0</TargetFramework>
     <RootNamespace>Hello_World</RootNamespace>
   </PropertyGroup>
-
+	<ItemGroup>
+		<AdditionalFiles Include="..\stylecop.json" Link="stylecop.json" />
+	</ItemGroup>
 </Project>
