@@ -1,4 +1,8 @@
-﻿using System;
+﻿// <copyright file="HomeController.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
+
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -16,40 +20,40 @@ namespace HelloWorldWeb.Controllers
 
         public HomeController(ILogger<HomeController> logger)
         {
-            _logger = logger;
-            teamInfo = new TeamInfo
+            this._logger = logger;
+            this.teamInfo = new TeamInfo
             {
                 Name = "Team2",
                 TeamMembers = new List<string>(new string[] { "Gabriel", "Delia", "Sorina", "Rares", "Catalin" })
             };
         }
 
-        [HttpGet]
+        [HttpPost]
         public void AddTeamMember(string name)
         {
-            teamInfo.TeamMembers.Add(name);
+            this.teamInfo.TeamMembers.Add(name);
         }
 
         [HttpGet]
         public int GetCount()
         {
-            return teamInfo.TeamMembers.Count;
+            return this.teamInfo.TeamMembers.Count;
         }
 
         public IActionResult Index()
         {
-            return View(teamInfo);
+            return this.View(this.teamInfo);
         }
 
         public IActionResult Privacy()
         {
-            return View();
+            return this.View();
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return this.View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? this.HttpContext.TraceIdentifier });
         }
     }
 }
