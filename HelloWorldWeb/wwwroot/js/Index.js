@@ -5,10 +5,10 @@ $(document).ready(function () {
         var newcomerName = $("#nameField").val();
         
         $.ajax({
-            url: "/Home/AddTeamMember",
             method: "POST",
+            url: "/Home/AddTeamMember",
             data: {
-                "name": newcomerName
+                "teamMember": newcomerName
             },
             success: (result) => {
                 $("#list").append(`<li>${newcomerName}</li>`);
