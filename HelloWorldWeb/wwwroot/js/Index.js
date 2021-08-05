@@ -9,6 +9,11 @@ $(document).ready(function () {
         }
     });
 
+    $("#clearButton").click(function () {
+        $("#nameField").val("");
+        $('#createButton').prop('disabled', true);
+    });
+
     $("#createButton").click(function () {
         var newcomerName = $("#nameField").val();
         
