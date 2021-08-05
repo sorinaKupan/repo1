@@ -1,5 +1,5 @@
-﻿// <copyright file="HomeController.cs" company="PlaceholderCompany">
-// Copyright (c) PlaceholderCompany. All rights reserved.
+﻿// <copyright file="HomeController.cs" company="Principal33">
+// Copyright (c) Principal33. All rights reserved.
 // </copyright>
 
 using System;
@@ -16,7 +16,9 @@ namespace HelloWorldWeb.Controllers
 {
     public class HomeController : Controller
     {
+#pragma warning disable IDE0052 // Remove unread private members
         private readonly ILogger<HomeController> _logger;
+#pragma warning restore IDE0052 // Remove unread private members
         private readonly ITeamService teamService;
 
         public HomeController(ILogger<HomeController> logger, ITeamService teamService)
@@ -28,18 +30,18 @@ namespace HelloWorldWeb.Controllers
         [HttpPost]
         public void AddTeamMember(string teamMember)
         {
-            teamService.AddTeamMember(teamMember);
+            this.teamService.AddTeamMember(teamMember);
         }
 
         [HttpGet]
         public int GetCount()
         {
-            return teamService.GetTeamInfo().TeamMembers.Count;
+            return this.teamService.GetTeamInfo().TeamMembers.Count;
         }
 
         public IActionResult Index()
         {
-            return this.View(teamService.GetTeamInfo());
+            return this.View(this.teamService.GetTeamInfo());
         }
 
         public IActionResult Privacy()

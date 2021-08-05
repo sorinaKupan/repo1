@@ -1,12 +1,12 @@
-﻿// <copyright file="HomeController.cs" company="PlaceholderCompany">
-// Copyright (c) PlaceholderCompany. All rights reserved.
+﻿// <copyright file="TeamService.cs" company="Principal33">
+// Copyright (c) Principal33. All rights reserved.
 // </copyright>
 
-using HelloWorldWeb.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using HelloWorldWeb.Models;
 
 namespace HelloWorldWeb.Services
 {
@@ -33,13 +33,12 @@ namespace HelloWorldWeb.Services
 
         public TeamInfo GetTeamInfo()
         {
-            return teamInfo;
+            return this.teamInfo;
         }
 
         public void AddTeamMember(string name)
         {
-            teamInfo.TeamMembers.Add(name);
+            this.teamInfo.TeamMembers.Add(name);
         }
-
     }
 }
