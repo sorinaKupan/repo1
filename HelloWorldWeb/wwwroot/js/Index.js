@@ -11,7 +11,12 @@ $(document).ready(function () {
                 "teamMember": newcomerName
             },
             success: (result) => {
-                $("#list").append(`<li>${newcomerName}</li>`);
+                $("#list").append(
+                    `<li class="member">
+                        <span class="memberName">${newcomerName}</span>
+                        <span class="delete fa fa-remove"></span>
+                        <span class="edit fa fa-pencil"></span>
+                    </li>`);
                 $("#nameField").val("");
             }
         })
