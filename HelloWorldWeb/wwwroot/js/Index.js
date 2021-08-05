@@ -1,6 +1,14 @@
 // This JS file now uses jQuery. Pls see here: https://jquery.com/
 $(document).ready(function () {
     // see https://api.jquery.com/click/
+    $('#nameField').on('input change', function () {
+        if ($(this).val() != '') {
+            $('#createButton').prop('disabled', false);
+        } else {
+            $('#createButton').prop('disabled', true);
+        }
+    });
+
     $("#createButton").click(function () {
         var newcomerName = $("#nameField").val();
         
@@ -18,6 +26,7 @@ $(document).ready(function () {
                         <span class="edit fa fa-pencil"></span>
                     </li>`);
                 $("#nameField").val("");
+                $('#createButton').prop('disabled', true);
             }
         })
 
