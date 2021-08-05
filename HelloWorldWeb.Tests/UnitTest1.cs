@@ -1,4 +1,5 @@
 using System;
+using HelloWorldWeb.Models;
 using HelloWorldWeb.Services;
 using Xunit;
 
@@ -31,7 +32,7 @@ namespace HelloWorldWeb.Tests
 
             // Act
 
-            teamService.DeleteTeamMember(new Models.TeamMember(1, "Tudor"));
+            teamService.DeleteTeamMember(new TeamMember(1, "Tudor"));
 
             //Assert
 
