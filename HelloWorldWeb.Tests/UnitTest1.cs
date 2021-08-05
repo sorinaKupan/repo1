@@ -22,5 +22,20 @@ namespace HelloWorldWeb.Tests
             
         }
 
+        [Fact]
+        public void DeleteTeamMember()
+        {
+            // Assume
+
+            ITeamService teamService = new TeamService();
+
+            // Act
+
+            teamService.DeleteTeamMember(new Models.TeamMember(1, "Tudor"));
+
+            //Assert
+
+            Assert.Equal(6, teamService.GetTeamInfo().TeamMembers.Count);
+        }
     }
 }
