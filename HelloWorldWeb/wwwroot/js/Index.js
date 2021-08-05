@@ -49,12 +49,13 @@ $(document).ready(function () {
 function setDelete(){
     $(".delete").off("click").click(function () {
         var index = $("#deleteMember").parent().attr("id");
-
+        var name = $("#deleteMember").parent().first.data;
         $.ajax({
             method: "DELETE",
             url: "/Home/DeleteTeamMember",
             data: {
-                "index": index
+                "index": index,
+                "name": name 
             },
             success: (result) => {
                 $(this).parent().remove();

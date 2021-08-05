@@ -17,8 +17,8 @@
             var member = Model.TeamMembers[i];
 
 
-        <li class="member" id="@i">
-            <span class="memberName">@member</span>
+        <li class="member" id="@member.Id">
+            <span class="memberName" id="@member.Name">@member.Name</span>
             <span class="delete fa fa-remove" id="deleteMember"></span>
             <span class="remove fa fa-pencil"></span>
         </li>
