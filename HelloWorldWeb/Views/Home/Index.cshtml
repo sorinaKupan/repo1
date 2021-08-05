@@ -5,6 +5,10 @@
 @section scripts {
     <script type="text/javascript" src="~/js/Index.js"></script>
 }
+@section AdditionalStyles {
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+}
+
 <div class="text-center">
     <h1 class="display-4">Our team</h1>
     <ul id="list">
@@ -13,9 +17,10 @@
             var member = Model.TeamMembers[i];
 
 
-
             <li class="member">
-                @member
+                <span class="memberName">@member</span>
+                <span class="delete fa fa-remove"></span>
+                <span class="remove fa fa-pencil"></span>
             </li>
         }
     </ul>
