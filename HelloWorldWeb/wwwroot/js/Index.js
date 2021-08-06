@@ -44,20 +44,50 @@ $(document).ready(function () {
             }
         });
     })
- 
+    $("#list").on("click", ".pencil", function () {
+        var targetMemberTag = $(this).closest('li');
+        var id = targetMemberTag.attr('data-member-id');
+        var currentName = targetMemberTag.find(".memberName").text();
+        $('#editClassmate').attr("data-member-id", id);
+        $('#classmateName').val(currentName);
+        $('#editClassmate').modal('show');
+    })
+
+    $("#editClassmate").on("click", "#submit", function () {
+        console.log('submit changes to server');
+        var id = 5;
+        var name = "Sorina";
+        $.ajax({
+            url: "/Home/EditTeamMemberName",
+            method: "POST",
+            data: {
+            "id": id,
+            "name": name
+        },
+            success: function (result) {
+                console.log(`successful renamed ${id}`);
+                location.reload();
+            }
+        })
+    })
+
+
+    $("#editClassmate").on("click", "#cancel", function () {
+        console.log('cancel changes');
+    })
 });
+
 function setDelete(){
     $(".delete").off("click").click(function () {
-        var index = $("#deleteMember").parent().attr("id");
-        var name = $("#deleteMember").parent().first.data;
+        var id = $("#deleteMember").parent().attr("id");
         $.ajax({
             method: "DELETE",
             url: "/Home/DeleteTeamMember",
             data: {
-                "index": index,
-                "name": name 
+                "id": id
             },
             success: (result) => {
+                console.log("delete:" + id);
                 $(this).parent().remove();
             }
         })

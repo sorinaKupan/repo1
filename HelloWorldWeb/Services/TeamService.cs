@@ -21,19 +21,23 @@ namespace HelloWorldWeb.Services
                 Name = "Team 2",
                 TeamMembers = new List<TeamMember>(),
             };
-#pragma warning disable SA1101 // Prefix local calls with this
-            teamInfo.TeamMembers.Add(new TeamMember(1, "Tudor"));
-            teamInfo.TeamMembers.Add(new TeamMember(2, "Sorina"));
-            teamInfo.TeamMembers.Add(new TeamMember(3, "Ema"));
-            teamInfo.TeamMembers.Add(new TeamMember(4, "Patrick"));
-            teamInfo.TeamMembers.Add(new TeamMember(5, "Radu"));
-            teamInfo.TeamMembers.Add(new TeamMember(5, "Fineas"));
-#pragma warning restore SA1101 // Prefix local calls with this
+            this.AddTeamMember("Sorina");
+            this.AddTeamMember("Tudor");
+            this.AddTeamMember("Ema");
+            this.AddTeamMember("Patrick");
+            this.AddTeamMember("Radu");
+            this.AddTeamMember("Fineas");
         }
 
         public TeamInfo GetTeamInfo()
         {
             return this.teamInfo;
+        }
+
+        public TeamMember GetTeamMemberById(int id)
+        {
+            Console.WriteLine(id);
+            return this.teamInfo.TeamMembers.Find(x => x.Id == id);
         }
 
         public int AddTeamMember(string name)
@@ -43,9 +47,13 @@ namespace HelloWorldWeb.Services
             return newId;
         }
 
-        public void DeleteTeamMember(TeamMember teamMember)
+        public void DeleteTeamMember(int id)
         {
-            this.teamInfo.TeamMembers.Remove(teamMember);
+            this.teamInfo.TeamMembers.Remove(GetTeamMemberById(id));
+        }
+        public void EditTeamMemberName(int id, string name)
+        {
+            this.GetTeamMemberById(id).Name = name;
         }
     }
 }

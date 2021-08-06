@@ -32,11 +32,22 @@ namespace HelloWorldWeb.Tests
 
             // Act
 
-            teamService.DeleteTeamMember(new TeamMember(1, "Tudor"));
+            teamService.DeleteTeamMember(1);
 
             //Assert
 
             Assert.Equal(6, teamService.GetTeamInfo().TeamMembers.Count);
+        }
+
+        [Fact]
+        public void EditTeamMemberName()
+        {
+            //Assume
+            ITeamService teamService = new TeamService();
+            //Act
+            teamService.EditTeamMemberName(3, "NewName");
+            //Assert
+            Assert.Equal("NewName", teamService.GetTeamMemberById(3).Name);
         }
     }
 }

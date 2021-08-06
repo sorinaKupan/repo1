@@ -10,8 +10,9 @@ namespace HelloWorldWeb.Services
     {
             int AddTeamMember(string name);
 
-            void DeleteTeamMember(TeamMember teamMember);
-
+            void DeleteTeamMember(int id);
+            TeamMember GetTeamMemberById(int id);
+            void EditTeamMemberName(int id, string name);
             TeamInfo GetTeamInfo();
     }
 }
