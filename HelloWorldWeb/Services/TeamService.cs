@@ -45,7 +45,6 @@ namespace HelloWorldWeb.Services
 
         public void DeleteTeamMember(TeamMember teamMember)
         {
-            // int position=teamInfo.TeamMembers.IndexOf(teamMember);
             this.teamInfo.TeamMembers.Remove(teamMember);
         }
     }
