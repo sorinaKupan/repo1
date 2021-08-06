@@ -54,9 +54,9 @@ $(document).ready(function () {
     })
 
     $("#editClassmate").on("click", "#submit", function () {
-        console.log('submit changes to server');
-        var id = 5;
-        var name = "Sorina";
+        var targetMemberTag = $(this).closest('li');
+        var id = $('#editClassmate').attr("data-member-id");
+        var name = $('#classmateName').val();
         $.ajax({
             url: "/Home/EditTeamMemberName",
             method: "POST",
@@ -65,7 +65,7 @@ $(document).ready(function () {
             "name": name
         },
             success: function (result) {
-                console.log(`successful renamed ${id}`);
+                targetMemberTag.find("memberName").text(name);
                 location.reload();
             }
         })
@@ -79,7 +79,7 @@ $(document).ready(function () {
 
 function setDelete(){
     $(".delete").off("click").click(function () {
-        var id = $("#deleteMember").parent().attr("id");
+        var id = $(this).parent().attr("data-member-id");
         $.ajax({
             method: "DELETE",
             url: "/Home/DeleteTeamMember",
