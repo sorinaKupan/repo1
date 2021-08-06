@@ -49,8 +49,9 @@ namespace HelloWorldWeb.Services
 
         public void DeleteTeamMember(int id)
         {
-            this.teamInfo.TeamMembers.Remove(GetTeamMemberById(id));
+            this.teamInfo.TeamMembers.Remove(this.GetTeamMemberById(id));
         }
+
         public void EditTeamMemberName(int id, string name)
         {
             this.GetTeamMemberById(id).Name = name;
