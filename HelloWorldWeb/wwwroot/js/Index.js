@@ -2,6 +2,7 @@
 $(document).ready(function () {
     // see https://api.jquery.com/click/
     setDelete();
+    setEdit();
 
     $('#nameField').on('input change', function () {
         if ($(this).val() != '') {
@@ -34,23 +35,16 @@ $(document).ready(function () {
                             `<li class="member" id="${resultGet}">
                         <span class="memberName">${newcomerName}</span>
                         <span class="delete fa fa-remove" id="deleteMember"></span>
-                        <span class="edit fa fa-pencil"></span>
+                        <span class="pencil fa fa-pencil"></span>
                              </li>`);
                         $("#nameField").val("");
                         $('#createButton').prop('disabled', true);
                         setDelete();
+                        setEdit();
                     }
                 })
             }
         });
-    })
-    $("#list").on("click", ".pencil", function () {
-        var targetMemberTag = $(this).closest('li');
-        var id = targetMemberTag.attr('data-member-id');
-        var currentName = targetMemberTag.find(".memberName").text();
-        $('#editClassmate').attr("data-member-id", id);
-        $('#classmateName').val(currentName);
-        $('#editClassmate').modal('show');
     })
 
     $("#editClassmate").on("click", "#submit", function () {
@@ -93,4 +87,15 @@ function setDelete(){
         })
     }
     );
+}
+
+function setEdit() {
+    $("#list").off("click").on("click", ".pencil", function () {
+        var targetMemberTag = $(this).closest('li');
+        var id = targetMemberTag.attr('data-member-id');
+        var currentName = targetMemberTag.find(".memberName").text();
+        $('#editClassmate').attr("data-member-id", id);
+        $('#classmateName').val(currentName);
+        $('#editClassmate').modal('show');
+    })
 }
