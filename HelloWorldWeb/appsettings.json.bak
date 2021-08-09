@@ -1,6 +1,6 @@
 {
   "ConnectionStrings": {
-    "DefaultConnection": "Server=(localdb)\\mssqllocaldb;Database=helloworlddb;Trusted_Connection=True;MultipleActiveResultSets=true"
+    "DefaultConnection": "Server=(localdb)\\mssqllocaldb;Database=aspnet-WebApplication1-F47FE777-9FCC-4D77-84C6-B9387AA4A0E8;Trusted_Connection=True;MultipleActiveResultSets=true"
   },
   "Logging": {
     "LogLevel": {
