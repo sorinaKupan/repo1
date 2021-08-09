@@ -6,6 +6,8 @@
 	  <GenerateDocumentationFile>true</GenerateDocumentationFile>
 	  <DocumentationFile>$(OutputPath)$(AssemblyName).xml</DocumentationFile>
 	  <NoWarn>$(NoWarn),1573,1591,1712</NoWarn>
+	  <UserSecretsId>d7f2ee97-1510-40f2-b011-71db6a749565</UserSecretsId>
+	  <DockerDefaultTargetOS>Windows</DockerDefaultTargetOS>
   </PropertyGroup>
 
   <ItemGroup>
@@ -15,13 +17,7 @@
     <AdditionalFiles Include="StyleCop.Cache" />
   </ItemGroup>
 	<ItemGroup>
-		<AdditionalFiles Include="..\stylecop.json" Link="stylecop.json" />
-	</ItemGroup>
-	<ItemGroup>
-		<PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
-			<PrivateAssets>all</PrivateAssets>
-			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-		</PackageReference>
+		<PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.14" />
 	</ItemGroup>
 
 	<ItemGroup>
