@@ -36,7 +36,7 @@ namespace HelloWorldWeb.Tests
 
             //Assert
 
-            Assert.Equal(6, teamService.GetTeamInfo().TeamMembers.Count);
+            Assert.Equal(5, teamService.GetTeamInfo().TeamMembers.Count);
         }
 
         [Fact]
