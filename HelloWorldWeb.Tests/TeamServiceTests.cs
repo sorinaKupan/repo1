@@ -29,10 +29,12 @@ namespace HelloWorldWeb.Tests
             // Assume
 
             ITeamService teamService = new TeamService();
+            var targetTeamMember = teamService.GetTeamInfo().TeamMembers[0];
+            var memberId = targetTeamMember.Id;
 
             // Act
 
-            teamService.DeleteTeamMember(1);
+            teamService.DeleteTeamMember(memberId);
 
             //Assert
 
@@ -44,10 +46,12 @@ namespace HelloWorldWeb.Tests
         {
             //Assume
             ITeamService teamService = new TeamService();
+            var targetTeamMember = teamService.GetTeamInfo().TeamMembers[0];
+            var memberId = targetTeamMember.Id;
             //Act
-            teamService.EditTeamMemberName(3, "NewName");
+            teamService.EditTeamMemberName(memberId, "NewName");
             //Assert
-            Assert.Equal("NewName", teamService.GetTeamMemberById(3).Name);
+            Assert.Equal("NewName", teamService.GetTeamMemberById(memberId).Name);
            
         }
         

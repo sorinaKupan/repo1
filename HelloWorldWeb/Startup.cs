@@ -29,6 +29,7 @@ namespace HelloWorldWeb
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSingleton<ITeamService>(new TeamService());
+            services.AddSingleton<ITimeService>(new TimeService());
 
             // services.AddSingleton(typeof(ITeamService), typeof(TeamService));
             services.AddControllersWithViews();

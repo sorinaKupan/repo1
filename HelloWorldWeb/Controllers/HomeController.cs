@@ -20,11 +20,13 @@ namespace HelloWorldWeb.Controllers
         private readonly ILogger<HomeController> _logger;
 #pragma warning restore IDE0052 // Remove unread private members
         private readonly ITeamService teamService;
+        private readonly ITimeService timeService;
 
-        public HomeController(ILogger<HomeController> logger, ITeamService teamService)
+        public HomeController(ILogger<HomeController> logger, ITeamService teamService, ITimeService timeService)
         {
             this._logger = logger;
             this.teamService = teamService;
+            this.timeService = timeService;
         }
 
         [HttpPost]

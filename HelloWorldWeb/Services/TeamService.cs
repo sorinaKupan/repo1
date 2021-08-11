@@ -13,6 +13,7 @@ namespace HelloWorldWeb.Services
     public class TeamService : ITeamService
     {
         private readonly TeamInfo teamInfo;
+        private ITimeService timeService;
 
         public TeamService()
         {
@@ -42,9 +43,9 @@ namespace HelloWorldWeb.Services
 
         public int AddTeamMember(string name)
         {
-            int newId = this.teamInfo.TeamMembers.Count() + 1;
-            this.teamInfo.TeamMembers.Add(new TeamMember(newId, name));
-            return newId;
+            TeamMember teamMember = new TeamMember(name, timeService);
+            this.teamInfo.TeamMembers.Add(teamMember);
+            return teamMember.Id;
         }
 
         public void DeleteTeamMember(int id)
