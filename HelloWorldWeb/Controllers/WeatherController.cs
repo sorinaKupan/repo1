@@ -39,10 +39,20 @@ namespace HelloWorldWebApp.Controllers
         public IEnumerable<DailyWeatherRecord> ConvertResponseToWeatherRecordList(string content)
         {
             var json = JObject.Parse(content);
-            return new DailyWeatherRecord[] {
+            List<DailyWeatherRecord> result =new List<DailyWeatherRecord>();
+            var jsonArray = json["daily"];
+            foreach (var item in jsonArray)
+            {
+                //TODO: convert item to DailyWeatherRecord
+
+                DailyWeatherRecord dailyWeatherRecord = new DailyWeatherRecord(new DateTime(2021, 08, 12), (decimal)22.0, WeatherType.Mild);
+                result.Add(dailyWeatherRecord);
+            }
+            return result;
+/*            return new DailyWeatherRecord[] {
             new DailyWeatherRecord(new DateTime(2021, 08, 12), (decimal)22.0, WeatherType.Mild),
             new DailyWeatherRecord(new DateTime(2021, 08, 13), (decimal)22.0, WeatherType.Mild)
-            };
+            };*/
         }
         // GET api/<WeatherController>/5
         [HttpGet("{id}")]
