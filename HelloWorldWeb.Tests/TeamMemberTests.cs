@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using HelloWorldWeb.Models;
 using HelloWorldWeb.Services;
+using Moq;
 using Xunit;
 
 namespace HelloWorldWeb.Tests
@@ -15,21 +16,10 @@ namespace HelloWorldWeb.Tests
 
         public TeamMemberTests()
         {
-            timeService = new FakeTimeService();
+            var mock = new Mock<ITimeService>();
+            mock.Setup(_ => _.Now()).Returns(new DateTime(2021, 08, 11));
+            timeService = mock.Object;
         }
-
-/*        [Fact]
-        public void TestEqualsTrue()
-        {
-            // Assume
-
-            // Act
-            TeamMember member1 = new TeamMember("Tudor", timeService);
-            TeamMember member2 = new TeamMember("Tudor", timeService);
-
-            // Assert
-            Assert.True(member1.Equals(member2));
-        }*/
 
         [Fact]
         public void TestEqualsIdFalse()
@@ -98,14 +88,6 @@ namespace HelloWorldWeb.Tests
 
             // Assert
             Assert.NotEqual(expectedAge, computedAge);
-        }
-    }
-
-    internal class FakeTimeService : ITimeService
-    {
-        public DateTime Now()
-        {
-            return new DateTime(2021, 08, 11);
         }
     }
 }
