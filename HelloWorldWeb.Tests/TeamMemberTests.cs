@@ -35,8 +35,8 @@ namespace HelloWorldWeb.Tests
             int computedAge = teamMember.getAge();
 
             // Assert
-            timeMock.Verify(_ => _.Now(), Times.AtMostOnce());
             Assert.Equal(expectedAge, computedAge);
+            timeMock.Verify(_ => _.Now(), Times.Once());
         }
     }
 }
