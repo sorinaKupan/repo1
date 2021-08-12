@@ -1,4 +1,6 @@
+using HelloWorldWweb.Models;
 using Microsoft.AspNetCore.Mvc;
+using RestSharp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,36 +13,40 @@ namespace HelloWorldWebApp.Controllers
     [ApiController]
     public class WeatherController : ControllerBase
     {
+        private readonly double latitude= 46.7700;
+        private readonly double longitude= 23.5800;
+        private readonly string apiKey= "bfe996606177703436b8ea1351e2bf09";
+
         // GET: api/<WeatherController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IEnumerable<DailyWeatherRecord> Get()
         {
-            return new string[] { "value1", "value2" };
+            //lat 46.7700 lon 23.5800
+            //https://api.openweathermap.org/data/2.5/onecall?lat=46.7700&lon=23.5800&exclude=hourly,minutely&appid=bfe996606177703436b8ea1351e2bf09
+
+            var client = new RestClient($"https://api.openweathermap.org/data/2.5/onecall?lat={latitude}&lon={longitude}&exclude=hourly,minutely&appid={apiKey}");
+            client.Timeout = -1;
+            var request = new RestRequest(Method.GET);
+            IRestResponse response = client.Execute(request);
+            return ConvertResponseToWeatherForecastList(response.Content);
+            return new DailyWeatherRecord[] { 
+            new DailyWeatherRecord(new DateTime(2021, 08, 12), (decimal)22.0, WeatherType.Mild),
+            new DailyWeatherRecord(new DateTime(2021, 08, 13), (decimal)22.0, WeatherType.Mild)
+            };
         }
 
+        private IEnumerable<DailyWeatherRecord> ConvertResponseToWeatherForecastList(string content)
+        {
+            return new DailyWeatherRecord[] {
+            new DailyWeatherRecord(new DateTime(2021, 08, 12), (decimal)22.0, WeatherType.Mild),
+            new DailyWeatherRecord(new DateTime(2021, 08, 13), (decimal)22.0, WeatherType.Mild)
+            };
+        }
         // GET api/<WeatherController>/5
         [HttpGet("{id}")]
         public string Get(int id)
         {
             return "value";
-        }
-
-        // POST api/<WeatherController>
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
-
-        // PUT api/<WeatherController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/<WeatherController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
         }
     }
 }
