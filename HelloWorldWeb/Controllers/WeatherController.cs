@@ -1,5 +1,6 @@
 using HelloWorldWweb.Models;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json.Linq;
 using RestSharp;
 using System;
 using System.Collections.Generic;
@@ -37,6 +38,7 @@ namespace HelloWorldWebApp.Controllers
 
         public IEnumerable<DailyWeatherRecord> ConvertResponseToWeatherRecordList(string content)
         {
+            var json = JObject.Parse(content);
             return new DailyWeatherRecord[] {
             new DailyWeatherRecord(new DateTime(2021, 08, 12), (decimal)22.0, WeatherType.Mild),
             new DailyWeatherRecord(new DateTime(2021, 08, 13), (decimal)22.0, WeatherType.Mild)
