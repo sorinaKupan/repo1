@@ -28,14 +28,14 @@ namespace HelloWorldWebApp.Controllers
             client.Timeout = -1;
             var request = new RestRequest(Method.GET);
             IRestResponse response = client.Execute(request);
-            return ConvertResponseToWeatherForecastList(response.Content);
+            return ConvertResponseToWeatherRecordList(response.Content);
             return new DailyWeatherRecord[] { 
             new DailyWeatherRecord(new DateTime(2021, 08, 12), (decimal)22.0, WeatherType.Mild),
             new DailyWeatherRecord(new DateTime(2021, 08, 13), (decimal)22.0, WeatherType.Mild)
             };
         }
 
-        private IEnumerable<DailyWeatherRecord> ConvertResponseToWeatherForecastList(string content)
+        public IEnumerable<DailyWeatherRecord> ConvertResponseToWeatherRecordList(string content)
         {
             return new DailyWeatherRecord[] {
             new DailyWeatherRecord(new DateTime(2021, 08, 12), (decimal)22.0, WeatherType.Mild),
