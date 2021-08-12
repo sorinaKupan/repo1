@@ -30,10 +30,10 @@ namespace HelloWorldWebApp.Controllers
             var request = new RestRequest(Method.GET);
             IRestResponse response = client.Execute(request);
             return ConvertResponseToWeatherRecordList(response.Content);
-            return new DailyWeatherRecord[] { 
+           /* return new DailyWeatherRecord[] { 
             new DailyWeatherRecord(new DateTime(2021, 08, 12), (decimal)22.0, WeatherType.Mild),
             new DailyWeatherRecord(new DateTime(2021, 08, 13), (decimal)22.0, WeatherType.Mild)
-            };
+            };*/
         }
 
         public IEnumerable<DailyWeatherRecord> ConvertResponseToWeatherRecordList(string content)
@@ -45,11 +45,11 @@ namespace HelloWorldWebApp.Controllers
             {
                 //TODO: convert item to DailyWeatherRecord
 
-                DailyWeatherRecord dailyWeatherRecord = new DailyWeatherRecord(new DateTime(2021, 08, 12), (decimal)22.0, WeatherType.Mild);
+                DailyWeatherRecord dailyWeatherRecord = new DailyWeatherRecord(new DateTime(2021, 08, 12), (decimal)(item.SelectToken("temp").Value<float>("day")-272.88), WeatherType.Mild);
                 long unixDateTime = item.Value<long>("dt");
                 dailyWeatherRecord.Day=DateTimeOffset.FromUnixTimeSeconds(unixDateTime).DateTime.Date;
 
-                dailyWeatherRecord.Temperature = (decimal)item.SelectToken("temp").Value<float>("day");
+                dailyWeatherRecord.Temperature = (decimal)(item.SelectToken("temp").Value<float>("day")- 272.88);
 
                 dailyWeatherRecord.Type= Convert(item.SelectToken("weather")[0].Value<string>("description"));
                 result.Add(dailyWeatherRecord);
@@ -61,6 +61,26 @@ namespace HelloWorldWebApp.Controllers
         {
             switch (weather)
             {
+                case "freezing":
+                    return WeatherType.Freezing;
+                case "bracing":
+                    return WeatherType.Bracing;
+                case "chilly":
+                    return WeatherType.Chilly;
+                case "cool":
+                    return WeatherType.Cool;
+                case "mild":
+                    return WeatherType.Mild;
+                case "balmy":
+                    return WeatherType.Balmy;
+                case "hot":
+                    return WeatherType.Hot;
+                case "sweltering":
+                    return WeatherType.Sweltering;
+                case "scorching":
+                    return WeatherType.Scorching;
+                case "moderate rain":
+                    return WeatherType.ModerateRain;
                 case "few clouds":
                     return WeatherType.FewClouds;
                 case "light rain":
