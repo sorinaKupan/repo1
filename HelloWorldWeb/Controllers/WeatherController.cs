@@ -48,6 +48,8 @@ namespace HelloWorldWebApp.Controllers
                 DailyWeatherRecord dailyWeatherRecord = new DailyWeatherRecord(new DateTime(2021, 08, 12), (decimal)22.0, WeatherType.Mild);
                 long unixDateTime = item.Value<long>("dt");
                 dailyWeatherRecord.Day=DateTimeOffset.FromUnixTimeSeconds(unixDateTime).DateTime.Date;
+
+                dailyWeatherRecord.Temperature = (decimal)item.SelectToken("temp").Value<float>("day");
                 result.Add(dailyWeatherRecord);
             }
             return result;
