@@ -40,19 +40,17 @@ namespace HelloWorldWebApp.Controllers
         {
             var json = JObject.Parse(content);
             List<DailyWeatherRecord> result =new List<DailyWeatherRecord>();
-            var jsonArray = json["daily"];
+            var jsonArray = json["daily"].Take(7);
             foreach (var item in jsonArray)
             {
                 //TODO: convert item to DailyWeatherRecord
 
                 DailyWeatherRecord dailyWeatherRecord = new DailyWeatherRecord(new DateTime(2021, 08, 12), (decimal)22.0, WeatherType.Mild);
+                long unixDateTime = item.Value<long>("dt");
+                dailyWeatherRecord.Day=DateTimeOffset.FromUnixTimeSeconds(unixDateTime).DateTime.Date;
                 result.Add(dailyWeatherRecord);
             }
             return result;
-/*            return new DailyWeatherRecord[] {
-            new DailyWeatherRecord(new DateTime(2021, 08, 12), (decimal)22.0, WeatherType.Mild),
-            new DailyWeatherRecord(new DateTime(2021, 08, 13), (decimal)22.0, WeatherType.Mild)
-            };*/
         }
         // GET api/<WeatherController>/5
         [HttpGet("{id}")]
