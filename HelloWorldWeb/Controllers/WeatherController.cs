@@ -17,6 +17,7 @@ namespace HelloWorldWebApp.Controllers
         private readonly double latitude= 46.7700;
         private readonly double longitude= 23.5800;
         private readonly string apiKey= "bfe996606177703436b8ea1351e2bf09";
+        public const double KELVIN_CONST = 273.15;
 
         // GET: api/<WeatherController>
         [HttpGet]
@@ -43,7 +44,7 @@ namespace HelloWorldWebApp.Controllers
         {
             long unixDateTime = item.Value<long>("dt");
             var day = DateTimeOffset.FromUnixTimeSeconds(unixDateTime).DateTime.Date;
-            var temperature = (decimal)(item.SelectToken("temp").Value<float>("day") - 273.15);
+            var temperature = (decimal)(item.SelectToken("temp").Value<float>("day") - KELVIN_CONST);
             var type = Convert(item.SelectToken("weather")[0].Value<string>("description"));
 
             DailyWeatherRecord dailyWeatherRecord = new DailyWeatherRecord(day, temperature, type);
