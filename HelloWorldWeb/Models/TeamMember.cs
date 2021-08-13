@@ -1,16 +1,16 @@
-﻿// <copyright file="TeamMember.cs" company="Principal33">
-// Copyright (c) Principal33. All rights reserved.
+﻿// <copyright file="TeamMember.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
-
-using System;
-using HelloWorldWeb.Services;
 
 namespace HelloWorldWeb.Models
 {
+    using System;
+    using HelloWorldWeb.Services;
     public class TeamMember
     {
         private readonly ITimeService timeService;
         private static int idCounter = 0;
+
         public TeamMember(string name, ITimeService timeService)
         {
             this.Id = idCounter;
@@ -22,6 +22,7 @@ namespace HelloWorldWeb.Models
         public int Id { get; set; }
 
         public string Name { get; set; }
+
         public DateTime BirthDate { get; set; }
 
         public static int GetIdCounter()
@@ -29,7 +30,7 @@ namespace HelloWorldWeb.Models
             return idCounter;
         }
 
-        public int getAge()
+        public int GetAge()
         {
             TimeSpan age;
             DateTime birthDate;

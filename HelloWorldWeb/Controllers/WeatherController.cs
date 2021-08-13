@@ -1,23 +1,27 @@
-using HelloWorldWweb.Models;
-using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json.Linq;
-using RestSharp;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+// <copyright file="WeatherController.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 namespace HelloWorldWebApp.Controllers
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using HelloWorldWweb.Models;
+    using Microsoft.AspNetCore.Mvc;
+    using Newtonsoft.Json.Linq;
+    using RestSharp;
+
     [Route("api/[controller]")]
     [ApiController]
     public class WeatherController : ControllerBase
     {
+        public const double KELVIN_CONST = 273.15;
         private readonly string latitude;
         private readonly string longitude;
         private readonly string apiKey;
-        public const double KELVIN_CONST = 273.15;
 
         public WeatherController(IWeatherControllerSettings weatherControllerSettings)
         {
@@ -25,13 +29,13 @@ namespace HelloWorldWebApp.Controllers
             this.latitude = weatherControllerSettings.Latitude;
             this.apiKey = weatherControllerSettings.ApiKey;
         }
+
         // GET: api/<WeatherController>
         [HttpGet]
         public IEnumerable<DailyWeatherRecord> Get()
         {
             //lat 46.7700 lon 23.5800
             //https://api.openweathermap.org/data/2.5/onecall?lat=46.7700&lon=23.5800&exclude=hourly,minutely&appid=bfe996606177703436b8ea1351e2bf09
-
             var client = new RestClient($"https://api.openweathermap.org/data/2.5/onecall?lat={latitude}&lon={longitude}&exclude=hourly,minutely&appid={apiKey}");
             client.Timeout = -1;
             var request = new RestRequest(Method.GET);
@@ -42,9 +46,11 @@ namespace HelloWorldWebApp.Controllers
         public IEnumerable<DailyWeatherRecord> ConvertResponseToWeatherRecordList(string content)
         {
             var json = JObject.Parse(content);
-            if(json["daily"] == null) {
+            if (json["daily"] == null)
+            {
                 throw new Exception("Api key is not valid.");
             }
+
             var jsonArray = json["daily"].Take(7);
             return jsonArray.Select(CreateDailyWeatherRecordFromJToken);
         }

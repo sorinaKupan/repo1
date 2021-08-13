@@ -32,7 +32,7 @@ namespace HelloWorldWeb.Tests
             int expectedAge = 21;
 
             // Act
-            int computedAge = teamMember.getAge();
+            int computedAge = teamMember.GetAge();
 
             // Assert
             Assert.Equal(expectedAge, computedAge);
