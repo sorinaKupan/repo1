@@ -7,10 +7,6 @@ namespace HelloWorldWweb.Models
 {
     public class DailyWeatherRecord
     {
-        public DailyWeatherRecord()
-        {
-
-        }
         public DailyWeatherRecord(DateTime day, decimal temperature, WeatherType type)
         {
             this.Day = day;
