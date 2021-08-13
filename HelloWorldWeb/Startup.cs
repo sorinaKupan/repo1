@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using HelloWorldWeb.Services;
+using HelloWorldWebApp.Controllers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -33,6 +34,7 @@ namespace HelloWorldWeb
 
             // services.AddSingleton(typeof(ITeamService), typeof(TeamService));
             services.AddControllersWithViews();
+            services.AddSingleton<IWeatherControllerSettings, WeatherControllerSettings>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -19,6 +19,12 @@ namespace HelloWorldWebApp.Controllers
         private readonly string apiKey= "bfe996606177703436b8ea1351e2bf09";
         public const double KELVIN_CONST = 273.15;
 
+        public WeatherController(IWeatherControllerSettings weatherControllerSettings)
+        {
+            this.longitude = weatherControllerSettings.Longitude;
+            this.latitude = weatherControllerSettings.Latitude;
+            this.apiKey = weatherControllerSettings.ApiKey;
+        }
         // GET: api/<WeatherController>
         [HttpGet]
         public IEnumerable<DailyWeatherRecord> Get()
