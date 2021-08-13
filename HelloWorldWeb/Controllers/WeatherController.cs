@@ -14,6 +14,9 @@ namespace HelloWorldWebApp.Controllers
     using Newtonsoft.Json.Linq;
     using RestSharp;
 
+    /// <summary>
+    /// fetch data from weather API.
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class WeatherController : ControllerBase
@@ -34,13 +37,13 @@ namespace HelloWorldWebApp.Controllers
         [HttpGet]
         public IEnumerable<DailyWeatherRecord> Get()
         {
-            //lat 46.7700 lon 23.5800
-            //https://api.openweathermap.org/data/2.5/onecall?lat=46.7700&lon=23.5800&exclude=hourly,minutely&appid=bfe996606177703436b8ea1351e2bf09
-            var client = new RestClient($"https://api.openweathermap.org/data/2.5/onecall?lat={latitude}&lon={longitude}&exclude=hourly,minutely&appid={apiKey}");
+            // lat 46.7700 lon 23.5800
+            // https://api.openweathermap.org/data/2.5/onecall?lat=46.7700&lon=23.5800&exclude=hourly,minutely&appid=bfe996606177703436b8ea1351e2bf09
+            var client = new RestClient($"https://api.openweathermap.org/data/2.5/onecall?lat={this.latitude}&lon={this.longitude}&exclude=hourly,minutely&appid={this.apiKey}");
             client.Timeout = -1;
             var request = new RestRequest(Method.GET);
             IRestResponse response = client.Execute(request);
-            return ConvertResponseToWeatherRecordList(response.Content);
+            return this.ConvertResponseToWeatherRecordList(response.Content);
         }
 
         public IEnumerable<DailyWeatherRecord> ConvertResponseToWeatherRecordList(string content)
@@ -52,7 +55,7 @@ namespace HelloWorldWebApp.Controllers
             }
 
             var jsonArray = json["daily"].Take(7);
-            return jsonArray.Select(CreateDailyWeatherRecordFromJToken);
+            return jsonArray.Select(this.CreateDailyWeatherRecordFromJToken);
         }
 
         private DailyWeatherRecord CreateDailyWeatherRecordFromJToken(JToken item)
@@ -60,7 +63,7 @@ namespace HelloWorldWebApp.Controllers
             long unixDateTime = item.Value<long>("dt");
             var day = DateTimeOffset.FromUnixTimeSeconds(unixDateTime).DateTime.Date;
             var temperature = (decimal)(item.SelectToken("temp").Value<float>("day") - KELVIN_CONST);
-            var type = Convert(item.SelectToken("weather")[0].Value<string>("description"));
+            var type = this.Convert(item.SelectToken("weather")[0].Value<string>("description"));
 
             DailyWeatherRecord dailyWeatherRecord = new DailyWeatherRecord(day, temperature, type);
             return dailyWeatherRecord;
@@ -105,7 +108,9 @@ namespace HelloWorldWebApp.Controllers
 
         // GET api/<WeatherController>/5
         [HttpGet("{id}")]
+#pragma warning disable SA1202 // Elements should be ordered by access
         public string Get(int id)
+#pragma warning restore SA1202 // Elements should be ordered by access
         {
             return "value";
         }

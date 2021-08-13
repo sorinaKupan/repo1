@@ -6,10 +6,10 @@ namespace HelloWorldWebApp.Controllers
 {
     public interface IWeatherControllerSettings
     {
-        string Longitude { set; get; }
+        string Longitude { get; set; }
 
-        string Latitude { set; get; }
+        string Latitude { get; set; }
 
-        string ApiKey { set; get; }
+        string ApiKey { get; set; }
     }
 }

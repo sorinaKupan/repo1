@@ -1,12 +1,12 @@
-﻿// <copyright file="Startup.cs" company="Principal33">
-// Copyright (c) Principal33. All rights reserved.
+﻿// <copyright file="WeatherControllerSettings.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
-
-using HelloWorldWebApp.Controllers;
-using Microsoft.Extensions.Configuration;
 
 namespace HelloWorldWeb
 {
+    using HelloWorldWebApp.Controllers;
+    using Microsoft.Extensions.Configuration;
+
     public class WeatherControllerSettings : IWeatherControllerSettings
     {
         public WeatherControllerSettings(IConfiguration conf)
@@ -14,9 +14,12 @@ namespace HelloWorldWeb
             this.ApiKey = conf["WeatherForecast:ApiKey"];
             this.Latitude = conf["WeatherForecast:Latitude"];
             this.Longitude = conf["WeatherForecast:Longitude"];
-        }       
+        }
+
         public string Longitude { get; set; }
+
         public string Latitude { get; set; }
+
         public string ApiKey { get; set; }
     }
 }

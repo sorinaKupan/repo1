@@ -1,32 +1,37 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using HelloWorldWeb.Models;
-using HelloWorldWeb.Services;
-using Moq;
-using Xunit;
+﻿// <copyright file="TeamMemberTests.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
 
 namespace HelloWorldWeb.Tests
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using HelloWorldWeb.Models;
+    using HelloWorldWeb.Services;
+    using Moq;
+    using Xunit;
+
     public class TeamMemberTests
     {
         private Mock<ITimeService> timeMock;
 
         private void InitializeTimeServiceMock()
         {
-            timeMock = new Mock<ITimeService>();
-            timeMock.Setup(_ => _.Now()).Returns(new DateTime(2021, 08, 11));
-            
+            this.timeMock = new Mock<ITimeService>();
+            this.timeMock.Setup(_ => _.Now()).Returns(new DateTime(2021, 08, 11));
         }
 
         [Fact]
+#pragma warning disable SA1202 // Elements should be ordered by access
         public void TestGetAgeEqual()
+#pragma warning restore SA1202 // Elements should be ordered by access
         {
             // Assume
-            InitializeTimeServiceMock();
-            var timeService = timeMock.Object;
+            this.InitializeTimeServiceMock();
+            var timeService = this.timeMock.Object;
             TeamMember teamMember = new TeamMember("Ioan", timeService);
             teamMember.BirthDate = new DateTime(2000, 01, 01);
             int expectedAge = 21;
@@ -36,7 +41,7 @@ namespace HelloWorldWeb.Tests
 
             // Assert
             Assert.Equal(expectedAge, computedAge);
-            timeMock.Verify(_ => _.Now(), Times.Once());
+            this.timeMock.Verify(_ => _.Now(), Times.Once());
         }
     }
 }

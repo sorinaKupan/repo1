@@ -6,10 +6,11 @@ namespace HelloWorldWeb.Models
 {
     using System;
     using HelloWorldWeb.Services;
+
     public class TeamMember
     {
-        private readonly ITimeService timeService;
         private static int idCounter = 0;
+        private readonly ITimeService timeService;
 
         public TeamMember(string name, ITimeService timeService)
         {
@@ -37,7 +38,7 @@ namespace HelloWorldWeb.Models
             birthDate = this.BirthDate;
 
             DateTime zeroTime = new DateTime(1, 1, 1);
-            age = timeService.Now() - birthDate;
+            age = this.timeService.Now() - birthDate;
             int years = (zeroTime + age).Year - 1;
 
             return years;
