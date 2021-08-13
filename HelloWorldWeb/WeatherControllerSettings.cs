@@ -3,13 +3,20 @@
 // </copyright>
 
 using HelloWorldWebApp.Controllers;
+using Microsoft.Extensions.Configuration;
 
 namespace HelloWorldWeb
 {
     public class WeatherControllerSettings : IWeatherControllerSettings
     {
-        public double Longitude { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
-        public double Latitude { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
-        public string ApiKey { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+        public WeatherControllerSettings(IConfiguration conf)
+        {
+            this.ApiKey = conf["WeatherForecast:ApiKey"];
+            this.Latitude = conf["WeatherForecast:Latitude"];
+            this.Longitude = conf["WeatherForecast:Longitude"];
+        }       
+        public string Longitude { get; set; }
+        public string Latitude { get; set; }
+        public string ApiKey { get; set; }
     }
 }

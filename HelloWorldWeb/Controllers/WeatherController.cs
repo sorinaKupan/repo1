@@ -14,9 +14,9 @@ namespace HelloWorldWebApp.Controllers
     [ApiController]
     public class WeatherController : ControllerBase
     {
-        private readonly double latitude= 46.7700;
-        private readonly double longitude= 23.5800;
-        private readonly string apiKey= "bfe996606177703436b8ea1351e2bf09";
+        private readonly string latitude;
+        private readonly string longitude;
+        private readonly string apiKey;
         public const double KELVIN_CONST = 273.15;
 
         public WeatherController(IWeatherControllerSettings weatherControllerSettings)
@@ -42,6 +42,9 @@ namespace HelloWorldWebApp.Controllers
         public IEnumerable<DailyWeatherRecord> ConvertResponseToWeatherRecordList(string content)
         {
             var json = JObject.Parse(content);
+            if(json["daily"] == null) {
+                throw new Exception("Api key is not valid.");
+            }
             var jsonArray = json["daily"].Take(7);
             return jsonArray.Select(CreateDailyWeatherRecordFromJToken);
         }
@@ -87,6 +90,8 @@ namespace HelloWorldWebApp.Controllers
                     return WeatherType.LightRain;
                 case "broken clouds":
                     return WeatherType.BrokenClouds;
+                case "clear sky":
+                    return WeatherType.ClearSky;
                 default:
                     throw new Exception($"Unknown weather type {weather}.");
             }
