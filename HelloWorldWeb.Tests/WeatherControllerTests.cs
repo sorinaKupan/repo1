@@ -22,10 +22,11 @@ namespace HelloWorldWeb.Tests
             //Assert
             Assert.Equal(7, result.Count());
             var firstDay = result.First();
+            decimal temperature = Math.Round(firstDay.Temperature, 2);
 
             Assert.Equal(new DateTime(2021, 08, 12), firstDay.Day);
             //Assert.Equal((decimal)272.88, firstDay.Temperature);// kelvin check
-            Assert.Equal((decimal)25.0000048828125, firstDay.Temperature);
+            Assert.Equal((decimal)24.73, temperature);
             Assert.Equal(WeatherType.FewClouds, firstDay.Type);
         }
     }
