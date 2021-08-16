@@ -108,10 +108,14 @@ namespace HelloWorldWebApp.Controllers
             }
         }
 
-        // GET api/<WeatherController>/5
-        [HttpGet("{id}")]
+        /// <summary>
+        /// Get a weather forecast for the day in specified amount of days from now.
+        /// </summary>
+        /// <param name="index">Amount of days from now (from 0 to 7).</param>
+        /// <returns>The weather forecast.</returns>
+        [HttpGet("{index}")]
 #pragma warning disable SA1202 // Elements should be ordered by access
-        public string Get(int id)
+        public string Get(int index)
 #pragma warning restore SA1202 // Elements should be ordered by access
         {
             return "value";
