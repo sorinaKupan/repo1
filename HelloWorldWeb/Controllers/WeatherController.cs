@@ -18,7 +18,7 @@ namespace HelloWorldWebApp.Controllers
     /// fetch data from weather API
     /// <see href="https://openweathermap.org/api">
     /// Weather API
-    /// </see>
+    /// </see>.
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]
@@ -48,6 +48,7 @@ namespace HelloWorldWebApp.Controllers
             IRestResponse response = client.Execute(request);
             return this.ConvertResponseToWeatherRecordList(response.Content);
         }
+
         [NonAction]
         public IEnumerable<DailyWeatherRecord> ConvertResponseToWeatherRecordList(string content)
         {
@@ -59,6 +60,17 @@ namespace HelloWorldWebApp.Controllers
 
             var jsonArray = json["daily"].Take(7);
             return jsonArray.Select(this.CreateDailyWeatherRecordFromJToken);
+        }
+
+        /// <summary>
+        /// Get a weather forecast for the day in specified amount of days from now.
+        /// </summary>
+        /// <param name="index">Amount of days from now (from 0 to 7).</param>
+        /// <returns>The weather forecast.</returns>
+        [HttpGet("{index}")]
+        public string Get(int index)
+        {
+            return "value";
         }
 
         private DailyWeatherRecord CreateDailyWeatherRecordFromJToken(JToken item)
@@ -109,19 +121,6 @@ namespace HelloWorldWebApp.Controllers
                 default:
                     throw new Exception($"Unknown weather type {weather}.");
             }
-        }
-
-        /// <summary>
-        /// Get a weather forecast for the day in specified amount of days from now.
-        /// </summary>
-        /// <param name="index">Amount of days from now (from 0 to 7).</param>
-        /// <returns>The weather forecast.</returns>
-        [HttpGet("{index}")]
-#pragma warning disable SA1202 // Elements should be ordered by access
-        public string Get(int index)
-#pragma warning restore SA1202 // Elements should be ordered by access
-        {
-            return "value";
         }
     }
 }
