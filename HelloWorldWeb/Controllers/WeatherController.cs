@@ -101,6 +101,8 @@ namespace HelloWorldWebApp.Controllers
                     return WeatherType.BrokenClouds;
                 case "clear sky":
                     return WeatherType.ClearSky;
+                case "overcast clouds":
+                    return WeatherType.OvercastClouds;
                 default:
                     throw new Exception($"Unknown weather type {weather}.");
             }

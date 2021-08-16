@@ -21,5 +21,6 @@ namespace HelloWorldWweb.Models
         BrokenClouds,
         ModerateRain,
         ClearSky,
+        OvercastClouds,
     }
 }
