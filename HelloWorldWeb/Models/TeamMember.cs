@@ -6,8 +6,9 @@ namespace HelloWorldWeb.Models
 {
     public class TeamMember
     {
-        public static int idCount = 0;
-        public TeamMember( string name)
+        private static int idCount = 0;
+
+        public TeamMember(string name)
         {
             this.Id = idCount;
             this.Name = name;

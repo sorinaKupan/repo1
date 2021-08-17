@@ -6,43 +6,47 @@ using System.Linq;
 using System.Threading.Tasks;
 using HelloWorldWeb.Data;
 using HelloWorldWeb.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace HelloWorldWeb.Services
 {
     public class DbTeamService : ITeamService
     {
-        private readonly ApplicationDbContext _context;
+        private readonly ApplicationDbContext context;
 
         public DbTeamService(ApplicationDbContext context)
         {
-            this._context = context;
+            this.context = context;
         }
 
         public int AddTeamMember(string name)
         {
             TeamMember newMember = new TeamMember(name);
-            this._context.Add(newMember);
-            this._context.SaveChangesAsync();
+            this.context.Add(newMember);
+            this.context.SaveChangesAsync();
             return newMember.Id;
         }
 
         public void DeleteTeamMember(int id)
         {
-            var teamMember = _context.TeamMembers.Find(id);
-            _context.TeamMembers.Remove(teamMember);
-            _context.SaveChanges();
+            var teamMember = this.context.TeamMembers.Find(id);
+            this.context.TeamMembers.Remove(teamMember);
+            this.context.SaveChanges();
         }
 
         public void EditTeamMemberName(int id, string name)
         {
-            throw new System.NotImplementedException();
+            var teamMember = this.context.TeamMembers.Find(id);
+            teamMember.Name = name;
+            this.context.Update(teamMember);
+            this.context.SaveChanges();
         }
 
         public TeamInfo GetTeamInfo()
         {
             TeamInfo teamInfo = new TeamInfo();
-            teamInfo.Name ="My team";
-            teamInfo.TeamMembers = this._context.TeamMembers.ToList();
+            teamInfo.Name = "My team";
+            teamInfo.TeamMembers = this.context.TeamMembers.ToList();
             return teamInfo;
         }
 
