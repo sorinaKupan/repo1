@@ -6,10 +6,12 @@ namespace HelloWorldWeb.Models
 {
     public class TeamMember
     {
-        public TeamMember(int id, string name)
+        public static int idCount = 0;
+        public TeamMember( string name)
         {
-            this.Id = id;
+            this.Id = idCount;
             this.Name = name;
+            idCount++;
         }
 
         public int Id { get; set; }

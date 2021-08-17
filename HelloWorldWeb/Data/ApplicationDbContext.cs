@@ -1,9 +1,13 @@
-﻿using System;
+﻿// <copyright file="ApplicationDbContext.cs" company="Principal33">
+// Copyright (c) Principal33. All rights reserved.
+// </copyright>
+
+using System;
 using System.Collections.Generic;
 using System.Text;
+using HelloWorldWeb.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using HelloWorldWeb.Models;
 
 namespace HelloWorldWeb.Data
 {
@@ -13,6 +17,9 @@ namespace HelloWorldWeb.Data
             : base(options)
         {
         }
+
         public DbSet<HelloWorldWeb.Models.Skill> Skill { get; set; }
+
+        public DbSet<HelloWorldWeb.Models.TeamMember> TeamMembers { get; set; }
     }
 }
