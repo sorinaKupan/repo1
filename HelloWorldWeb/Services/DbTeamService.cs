@@ -21,9 +21,9 @@ namespace HelloWorldWeb.Services
 
         public int AddTeamMember(string name)
         {
-            TeamMember newMember = new TeamMember(name);
+            TeamMember newMember = new TeamMember() { Name=name};
             this.context.Add(newMember);
-            this.context.SaveChangesAsync();
+            this.context.SaveChanges();
             return newMember.Id;
         }
 
