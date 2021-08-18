@@ -1,11 +1,11 @@
-﻿// <copyright file="TeamMember.cs" company="Principal33">
-// Copyright (c) Principal33. All rights reserved.
+﻿// <copyright file="TeamMember.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
-
-using System;
 
 namespace HelloWorldWeb.Models
 {
+    using System;
+
     public class TeamMember
     {
         private static int idCounter = 0;

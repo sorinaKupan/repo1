@@ -1,11 +1,11 @@
-﻿// <copyright file="TeamInfo.cs" company="Principal33">
-// Copyright (c) Principal33. All rights reserved.
+﻿// <copyright file="TeamInfo.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
-
-using System.Collections.Generic;
 
 namespace HelloWorldWeb.Models
 {
+    using System.Collections.Generic;
+
     public class TeamInfo
     {
         public string Name { get; set; }

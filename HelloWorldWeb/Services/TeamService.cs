@@ -1,15 +1,15 @@
-﻿// <copyright file="TeamService.cs" company="Principal33">
-// Copyright (c) Principal33. All rights reserved.
+﻿// <copyright file="TeamService.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using HelloWorldWeb.Models;
 
 namespace HelloWorldWeb.Services
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using HelloWorldWeb.Models;
+
     public class TeamService : ITeamService
     {
         private readonly TeamInfo teamInfo;

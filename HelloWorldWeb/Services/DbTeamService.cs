@@ -1,16 +1,16 @@
-// <copyright file="DbTeamService.cs" company="Principal33">
-// Copyright (c) Principal33. All rights reserved.
+// <copyright file="DbTeamService.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
-
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using HelloWorldWeb.Data;
-using HelloWorldWeb.Models;
-using Microsoft.EntityFrameworkCore;
 
 namespace HelloWorldWeb.Services
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using HelloWorldWeb.Data;
+    using HelloWorldWeb.Models;
+    using Microsoft.EntityFrameworkCore;
+
     public class DbTeamService : ITeamService
     {
         private readonly ApplicationDbContext context;

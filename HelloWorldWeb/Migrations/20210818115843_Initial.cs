@@ -1,13 +1,13 @@
-﻿// <copyright file="20210818115843_Initial.cs" company="Principal33">
-// Copyright (c) Principal33. All rights reserved.
+﻿// <copyright file="20210818115843_Initial.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
-
-using System;
-using Microsoft.EntityFrameworkCore.Migrations;
-using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace HelloWorldWeb.Migrations
 {
+    using System;
+    using Microsoft.EntityFrameworkCore.Migrations;
+    using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
+
     public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)

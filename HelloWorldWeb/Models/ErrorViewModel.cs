@@ -1,11 +1,11 @@
-// <copyright file="ErrorViewModel.cs" company="Principal33">
-// Copyright (c) Principal33. All rights reserved.
+// <copyright file="ErrorViewModel.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
-
-using System;
 
 namespace HelloWorldWeb.Models
 {
+    using System;
+
     public class ErrorViewModel
     {
         public string RequestId { get; set; }
