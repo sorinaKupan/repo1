@@ -28,8 +28,10 @@ namespace HelloWorldWeb.Controllers
         }
 
         [HttpPost]
-        public int AddTeamMember(string teamMember)
+        public int AddTeamMember(string name)
         {
+            TeamMember teamMember = new TeamMember();
+            teamMember.Name = name;
             return this.teamService.AddTeamMember(teamMember);
         }
 
@@ -40,20 +42,21 @@ namespace HelloWorldWeb.Controllers
         }
 
         [HttpPost]
-        public void EditTeamMemberName(int id, string name)
+        public int EditTeamMemberName(int id, string name)
         {
-            this.teamService.EditTeamMemberName(id, name);
+            return this.teamService.EditTeamMemberName(id, name);
         }
 
         [HttpGet]
         public int GetCount()
         {
-            return this.teamService.GetTeamInfo().TeamMembers.Count;
+            return this.teamService.GetTeamInfo().TeamMembers.Count();
         }
 
         public IActionResult Index()
         {
-            return this.View(this.teamService.GetTeamInfo());
+            var teamInfo = this.teamService.GetTeamInfo();
+            return this.View(teamInfo);
         }
 
         public IActionResult Privacy()

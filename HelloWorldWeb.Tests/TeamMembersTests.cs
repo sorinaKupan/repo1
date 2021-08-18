@@ -5,7 +5,7 @@ using Xunit;
 
 namespace HelloWorldWeb.Tests
 {
-    public class TeamServiceTest
+    public class TeamMembersTests
     {
         [Fact]
         public void AddTeamMemberToTheTeam()
@@ -16,7 +16,7 @@ namespace HelloWorldWeb.Tests
 
             // Act
 
-            teamService.AddTeamMember("Sorina");
+            teamService.AddTeamMember(new TeamMember() { Name = "Sorina" });
 
             // Assert
             Assert.Equal(7, teamService.GetTeamInfo().TeamMembers.Count);
@@ -50,21 +50,21 @@ namespace HelloWorldWeb.Tests
             Assert.Equal("NewName", teamService.GetTeamMemberById(3).Name);
            
         }
-        
+
         [Fact]
         public void CheckIdProblem()
         {
-            //Assume
+            // Assume
             ITeamService teamService = new TeamService();
-            var memberToBeDeleted = teamService.GetTeamInfo().TeamMembers[teamService.GetTeamInfo().TeamMembers.Count-2];
-            var newMemberName = "Boris";
-            //Act
-            teamService.DeleteTeamMember(memberToBeDeleted.Id);
-            var id= teamService.AddTeamMember(newMemberName);
-            teamService.DeleteTeamMember(id);
-            //Assert
-            var member= teamService.GetTeamInfo().TeamMembers.Find(element => element.Name == newMemberName);
-            Assert.Null(member);
+            int givenId = 2000;
+
+            // Act
+            TeamMember newTeamMember = new TeamMember(givenId, "Boris");
+            teamService.AddTeamMember(newTeamMember);
+            teamService.DeleteTeamMember(givenId);
+
+            // Assert
+            Assert.Null(teamService.GetTeamMemberById(givenId));
         } 
     }
 }

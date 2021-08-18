@@ -29,6 +29,16 @@ namespace HelloWorldWeb
 
         public IConfiguration Configuration { get; }
 
+        public static string ConvertHerokuStringToAspnetString(string herokuConnectionString)
+        {
+            var databaseUri = new Uri(herokuConnectionString);
+            var databaseUriUsername = databaseUri.UserInfo;
+            var databaseUsername = databaseUriUsername.Split(":")[0];
+            var databasePassword = databaseUriUsername.Split(":")[1];
+            var databaseName = databaseUri.LocalPath.TrimStart('/');
+            return $"Host = {databaseUri.Host}; Port = {databaseUri.Port}; Database = {databaseName}; Integrated Security = true; User Id = {databaseUsername}; Password = {databasePassword}; Pooling = True; SSL Mode = Require; TrustServerCertificate = True; Include Error Detail = True";
+        }
+
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {

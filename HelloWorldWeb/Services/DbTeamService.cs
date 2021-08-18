@@ -2,6 +2,7 @@
 // Copyright (c) Principal33. All rights reserved.
 // </copyright>
 
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using HelloWorldWeb.Data;
@@ -19,12 +20,11 @@ namespace HelloWorldWeb.Services
             this.context = context;
         }
 
-        public int AddTeamMember(string name)
+        public int AddTeamMember(TeamMember teamMember)
         {
-            TeamMember newMember = new TeamMember() { Name = name };
-            this.context.Add(newMember);
+            this.context.Add(teamMember);
             this.context.SaveChanges();
-            return newMember.Id;
+            return teamMember.Id;
         }
 
         public void DeleteTeamMember(int id)
@@ -34,12 +34,19 @@ namespace HelloWorldWeb.Services
             this.context.SaveChanges();
         }
 
-        public void EditTeamMemberName(int id, string name)
+        public int EditTeamMemberName(int id, string name)
         {
-            var teamMember = this.context.TeamMembers.Find(id);
-            teamMember.Name = name;
-            this.context.Update(teamMember);
+            int returnId = -1;
+            TeamMember existingMember = this.GetTeamMemberById(id);
+
+            if (existingMember != null)
+            {
+                existingMember.Name = name;
+                returnId = id;
+            }
+
             this.context.SaveChanges();
+            return returnId;
         }
 
         public TeamInfo GetTeamInfo()
@@ -52,7 +59,16 @@ namespace HelloWorldWeb.Services
 
         public TeamMember GetTeamMemberById(int id)
         {
-            throw new System.NotImplementedException();
+            List<TeamMember> members = this.context.TeamMembers.ToList();
+            foreach (TeamMember member in members)
+            {
+                if (member.Id == id)
+                {
+                    return member;
+                }
+            }
+
+            return null;
         }
     }
 }

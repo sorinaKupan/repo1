@@ -28,13 +28,13 @@ $(document).ready(function () {
                     method: "POST",
                     url: "/Home/AddTeamMember",
                     data: {
-                        "teamMember": newcomerName
+                        "name": newcomerName
                     },
                     success: (resultPost) => {
                         $("#list").append(
-                            `<li class="member" id="${resultGet}">
+                            `<li class="member" data-member-id="${resultPost}">
                         <span class="memberName">${newcomerName}</span>
-                        <span class="delete fa fa-remove" id="deleteMember"></span>
+                        <span class="deleteMember fa fa-remove"></span>
                         <span class="pencil fa fa-pencil"></span>
                              </li>`);
                         $("#nameField").val("");
@@ -72,8 +72,9 @@ $(document).ready(function () {
 });
 
 function setDelete(){
-    $(".delete").off("click").click(function () {
-        var id = $(this).parent().attr("data-member-id");
+    $("#list").on("click", ".deleteMember", function () {
+        var targetMemberTag = $(this).closest('li');
+        var id = targetMemberTag.attr('data-member-id');
         $.ajax({
             method: "DELETE",
             url: "/Home/DeleteTeamMember",
@@ -82,7 +83,7 @@ function setDelete(){
             },
             success: (result) => {
                 console.log("delete:" + id);
-                $(this).parent().remove();
+                targetMemberTag.remove();
             }
         })
     }
@@ -90,7 +91,7 @@ function setDelete(){
 }
 
 function setEdit() {
-    $("#list").off("click").on("click", ".pencil", function () {
+    $("#list").on("click", ".pencil", function () {
         var targetMemberTag = $(this).closest('li');
         var id = targetMemberTag.attr('data-member-id');
         var currentName = targetMemberTag.find(".memberName").text();

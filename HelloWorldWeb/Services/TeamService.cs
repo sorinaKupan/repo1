@@ -21,12 +21,12 @@ namespace HelloWorldWeb.Services
                 Name = "Team 2",
                 TeamMembers = new List<TeamMember>(),
             };
-            this.AddTeamMember("Sorina");
-            this.AddTeamMember("Tudor");
-            this.AddTeamMember("Ema");
-            this.AddTeamMember("Patrick");
-            this.AddTeamMember("Radu");
-            this.AddTeamMember("Fineas");
+            this.teamInfo.TeamMembers.Add(new TeamMember("Sorina"));
+            this.teamInfo.TeamMembers.Add(new TeamMember("Ema"));
+            this.teamInfo.TeamMembers.Add(new TeamMember("Radu"));
+            this.teamInfo.TeamMembers.Add(new TeamMember("Patrick"));
+            this.teamInfo.TeamMembers.Add(new TeamMember("Tudor"));
+            this.teamInfo.TeamMembers.Add(new TeamMember("Fineas"));
         }
 
         public TeamInfo GetTeamInfo()
@@ -40,11 +40,10 @@ namespace HelloWorldWeb.Services
             return this.teamInfo.TeamMembers.Find(x => x.Id == id);
         }
 
-        public int AddTeamMember(string name)
+        public int AddTeamMember(TeamMember teamMember)
         {
-            int newId = this.teamInfo.TeamMembers.Count + 1;
-            this.teamInfo.TeamMembers.Add(new TeamMember(name));
-            return newId;
+            this.teamInfo.TeamMembers.Add(teamMember);
+            return teamMember.Id;
         }
 
         public void DeleteTeamMember(int id)
@@ -52,9 +51,10 @@ namespace HelloWorldWeb.Services
             this.teamInfo.TeamMembers.Remove(this.GetTeamMemberById(id));
         }
 
-        public void EditTeamMemberName(int id, string name)
+        public int EditTeamMemberName(int id, string name)
         {
             this.GetTeamMemberById(id).Name = name;
+            return id;
         }
     }
 }
