@@ -21,7 +21,7 @@ namespace HelloWorldWeb.Services
                 Name = "Team 2",
                 TeamMembers = new List<TeamMember>(),
             };
-            this.teamInfo.TeamMembers.Add(new TeamMember("Sorina"));
+            this.teamInfo.TeamMembers.Add(new TeamMember("Iuliana"));
             this.teamInfo.TeamMembers.Add(new TeamMember("Ema"));
             this.teamInfo.TeamMembers.Add(new TeamMember("Radu"));
             this.teamInfo.TeamMembers.Add(new TeamMember("Patrick"));
