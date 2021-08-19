@@ -43,9 +43,14 @@ namespace C_Features
                 var coffee = recipe(grains, milk, water, sugar);
                 return coffee;
             }
-            catch
+            catch(RecipeUnavailableException exception)
             {
-                Console.WriteLine("Something went wrong.");
+                Console.WriteLine(exception.Message);
+                return null;
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine($"Something went wrong, see exception details: {e.Message}");
                 return null;
             }
             finally
@@ -56,7 +61,7 @@ namespace C_Features
 
         static Coffee Espresso(string grains, string milk, string water, string sugar)
         {
-            throw new RecipeUnavailableException();
+            throw new ApplicationException();
         }
         static Coffee FlatWhite(string grains, string milk, string water, string sugar)
         {

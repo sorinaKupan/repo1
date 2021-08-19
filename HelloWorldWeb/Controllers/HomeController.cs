@@ -20,19 +20,17 @@ namespace HelloWorldWeb.Controllers
         private readonly ILogger<HomeController> _logger;
 #pragma warning restore IDE0052 // Remove unread private members
         private readonly ITeamService teamService;
-        private readonly ITimeService timeService;
 
-        public HomeController(ILogger<HomeController> logger, ITeamService teamService, ITimeService timeService)
+        public HomeController(ILogger<HomeController> logger, ITeamService teamService)
         {
             this._logger = logger;
             this.teamService = teamService;
-            this.timeService = timeService;
         }
 
         [HttpPost]
-        public int AddTeamMember(string teamMember)
+        public int AddTeamMember(string name)
         {
-            return this.teamService.AddTeamMember(teamMember);
+            return this.teamService.AddTeamMember(name);
         }
 
         [HttpDelete]
@@ -50,12 +48,13 @@ namespace HelloWorldWeb.Controllers
         [HttpGet]
         public int GetCount()
         {
-            return this.teamService.GetTeamInfo().TeamMembers.Count;
+            return this.teamService.GetTeamInfo().TeamMembers.Count();
         }
 
         public IActionResult Index()
         {
-            return this.View(this.teamService.GetTeamInfo());
+            var teamInfo = this.teamService.GetTeamInfo();
+            return this.View(teamInfo);
         }
 
         public IActionResult Privacy()
