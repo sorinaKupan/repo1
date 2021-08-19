@@ -2,9 +2,9 @@ name: .NET
 
 on:
   push:
-    branches: [ EF-Postgres ]
+    branches: [ main ]
   pull_request:
-    branches: [ EF_Postgres ]
+    branches: [ main ]
 
 jobs:
   build:
