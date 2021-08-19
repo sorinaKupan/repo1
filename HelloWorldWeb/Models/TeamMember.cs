@@ -16,8 +16,8 @@ namespace HelloWorldWeb.Models
 
         public TeamMember()
         {
-
         }
+
         public TeamMember(string name, ITimeService timeService)
         {
             this.Id = idCounter;
