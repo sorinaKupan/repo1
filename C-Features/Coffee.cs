@@ -15,5 +15,10 @@ namespace C_Features
             this.CoffeeType = type;
         }
         public string CoffeeType { get; set; }
+
+        public override string ToString()
+        {
+            return CoffeeType;
+        }
     }
 }

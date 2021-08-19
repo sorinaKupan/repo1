@@ -21,8 +21,10 @@ namespace C_Features
             var expectedOutput = readText.Result;
             var teamMemberDeserialized = JsonSerializer.Deserialize<TeamMember>(expectedOutput);
             Console.WriteLine(teamMemberDeserialized);
-
-            Coffee coffee = MakeCoffee("grains", "milk", "water", "sugar", Espresso);
+            Console.Write("What would you like?");
+            var customerInput = Console.ReadLine();
+            Func<string, string, string, string, Coffee> recipe = customerInput == "FlatWhite" ? FlatWhite : Espresso;
+            Coffee coffee = MakeCoffee("grains", "milk", "water", "sugar", recipe);
             Console.WriteLine($"Here is your coffee: {coffee}");
         }
 
@@ -47,6 +49,10 @@ namespace C_Features
         static Coffee Espresso(string grains, string milk, string water, string sugar)
         {
             return new Coffee("Espresso");
+        }
+        static Coffee FlatWhite(string grains, string milk, string water, string sugar)
+        {
+            return new Coffee("Flat White");
         }
     }
 }
