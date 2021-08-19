@@ -25,7 +25,14 @@ namespace C_Features
             var customerInput = Console.ReadLine();
             Func<string, string, string, string, Coffee> recipe = customerInput == "FlatWhite" ? FlatWhite : Espresso;
             Coffee coffee = MakeCoffee("grains", "milk", "water", "sugar", recipe);
-            Console.WriteLine($"Here is your coffee: {coffee}");
+            if (coffee == null)
+            {
+                Console.WriteLine("Sorry, your order can not be completed.");
+            }
+            else
+            {
+                Console.WriteLine($"Here is your coffee: {coffee}");
+            }
         }
 
         static Coffee MakeCoffee(string grains, string milk, string water, string sugar, Func<string, string, string, string, Coffee> recipe)
@@ -38,7 +45,8 @@ namespace C_Features
             }
             catch
             {
-                throw;
+                Console.WriteLine("Something went wrong.");
+                return null;
             }
             finally
             {
@@ -48,7 +56,7 @@ namespace C_Features
 
         static Coffee Espresso(string grains, string milk, string water, string sugar)
         {
-            return new Coffee("Espresso");
+            throw new RecipeUnavailableException();
         }
         static Coffee FlatWhite(string grains, string milk, string water, string sugar)
         {
