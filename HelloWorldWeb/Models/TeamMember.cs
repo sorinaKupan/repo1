@@ -5,8 +5,10 @@
 namespace HelloWorldWeb.Models
 {
     using System;
+    using System.Diagnostics;
     using HelloWorldWeb.Services;
 
+    [DebuggerDisplay("{Name}[{Id}]")]
     public class TeamMember
     {
         private static int idCounter = 0;
