@@ -32,7 +32,7 @@ $(document).ready(function () {
                     },
                     success: (resultPost) => {
                         $("#list").append(
-                            `<li class="member" id="${resultGet}">
+                            `<li class="member" data-member-id="${resultGet}">
                         <span class="memberName">${newcomerName}</span>
                         <span class="delete fa fa-remove" id="deleteMember"></span>
                         <span class="pencil fa fa-pencil"></span>
@@ -72,7 +72,7 @@ $(document).ready(function () {
 });
 
 function setDelete(){
-    $(".delete").off("click").click(function () {
+    $(".delete").click(function () {
         var id = $(this).parent().attr("data-member-id");
         $.ajax({
             method: "DELETE",
@@ -90,7 +90,7 @@ function setDelete(){
 }
 
 function setEdit() {
-    $("#list").off("click").on("click", ".pencil", function () {
+    $("#list").on("click", ".pencil", function () {
         var targetMemberTag = $(this).closest('li');
         var id = targetMemberTag.attr('data-member-id');
         var currentName = targetMemberTag.find(".memberName").text();
