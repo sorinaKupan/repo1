@@ -1,16 +1,14 @@
-﻿// <copyright file="TeamService.cs" company="PlaceholderCompany">
-// Copyright (c) PlaceholderCompany. All rights reserved.
+﻿// <copyright file="TeamService.cs" company="Principal33">
+// Copyright (c) Principal33. All rights reserved.
 // </copyright>
+
+using System;
+using System.Collections.Generic;
+using HelloWorldWeb.Models;
+using Microsoft.AspNetCore.SignalR;
 
 namespace HelloWorldWeb.Services
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
-    using HelloWorldWeb.Models;
-    using Microsoft.AspNetCore.SignalR;
-
     public class TeamService : ITeamService
     {
         private readonly TeamInfo teamInfo;
@@ -48,7 +46,7 @@ namespace HelloWorldWeb.Services
 
         public int AddTeamMember(string name)
         {
-            TeamMember teamMember = new TeamMember(name, this.timeService);
+            TeamMember teamMember = new (name, this.timeService);
             this.teamInfo.TeamMembers.Add(teamMember);
             this.messageHub.Clients.All.SendAsync("TeamMemberAdded", teamMember.Name, teamMember.Id);
             return teamMember.Id;

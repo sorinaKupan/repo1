@@ -25,9 +25,7 @@ namespace HelloWorldWeb.Tests
         }
 
         [Fact]
-#pragma warning disable SA1202 // Elements should be ordered by access
         public void TestGetAgeEqual()
-#pragma warning restore SA1202 // Elements should be ordered by access
         {
             // Assume
             this.InitializeTimeServiceMock();

@@ -1,5 +1,5 @@
-﻿// <copyright file="WeatherType.cs" company="PlaceholderCompany">
-// Copyright (c) PlaceholderCompany. All rights reserved.
+﻿// <copyright file="WeatherType.cs" company="Principal33">
+// Copyright (c) Principal33. All rights reserved.
 // </copyright>
 
 namespace HelloWorldWweb.Models

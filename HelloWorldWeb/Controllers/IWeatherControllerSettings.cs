@@ -1,5 +1,5 @@
-﻿// <copyright file="IWeatherControllerSettings.cs" company="PlaceholderCompany">
-// Copyright (c) PlaceholderCompany. All rights reserved.
+﻿// <copyright file="IWeatherControllerSettings.cs" company="Principal33">
+// Copyright (c) Principal33. All rights reserved.
 // </copyright>
 
 namespace HelloWorldWebApp.Controllers

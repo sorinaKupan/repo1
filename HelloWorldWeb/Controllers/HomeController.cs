@@ -1,29 +1,26 @@
-﻿// <copyright file="HomeController.cs" company="PlaceholderCompany">
-// Copyright (c) PlaceholderCompany. All rights reserved.
+﻿// <copyright file="HomeController.cs" company="Principal33">
+// Copyright (c) Principal33. All rights reserved.
 // </copyright>
+
+using System.Diagnostics;
+using System.Linq;
+using HelloWorldWeb.Models;
+using HelloWorldWeb.Services;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace HelloWorldWeb.Controllers
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Diagnostics;
-    using System.Linq;
-    using System.Threading.Tasks;
-    using HelloWorldWeb.Models;
-    using HelloWorldWeb.Services;
-    using Microsoft.AspNetCore.Mvc;
-    using Microsoft.Extensions.Logging;
-
     public class HomeController : Controller
     {
 #pragma warning disable IDE0052 // Remove unread private members
-        private readonly ILogger<HomeController> _logger;
+        private readonly ILogger<HomeController> logger;
 #pragma warning restore IDE0052 // Remove unread private members
         private readonly ITeamService teamService;
 
         public HomeController(ILogger<HomeController> logger, ITeamService teamService)
         {
-            this._logger = logger;
+            this.logger = logger;
             this.teamService = teamService;
         }
 
@@ -48,7 +45,7 @@ namespace HelloWorldWeb.Controllers
         [HttpGet]
         public int GetCount()
         {
-            return this.teamService.GetTeamInfo().TeamMembers.Count();
+            return this.teamService.GetTeamInfo().TeamMembers.Count;
         }
 
         public IActionResult Index()

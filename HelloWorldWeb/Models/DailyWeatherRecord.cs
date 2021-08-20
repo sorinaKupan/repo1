@@ -1,14 +1,11 @@
-// <copyright file="DailyWeatherRecord.cs" company="PlaceholderCompany">
-// Copyright (c) PlaceholderCompany. All rights reserved.
+// <copyright file="DailyWeatherRecord.cs" company="Principal33">
+// Copyright (c) Principal33. All rights reserved.
 // </copyright>
+
+using System;
 
 namespace HelloWorldWweb.Models
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
-
     public class DailyWeatherRecord
     {
         public DailyWeatherRecord(DateTime day, decimal temperature, WeatherType type)

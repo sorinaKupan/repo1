@@ -1,13 +1,13 @@
-﻿// <copyright file="TeamMember.cs" company="PlaceholderCompany">
-// Copyright (c) PlaceholderCompany. All rights reserved.
+﻿// <copyright file="TeamMember.cs" company="Principal33">
+// Copyright (c) Principal33. All rights reserved.
 // </copyright>
+
+using System;
+using System.Diagnostics;
+using HelloWorldWeb.Services;
 
 namespace HelloWorldWeb.Models
 {
-    using System;
-    using System.Diagnostics;
-    using HelloWorldWeb.Services;
-
     [DebuggerDisplay("{Name}[{Id}]")]
     public class TeamMember
     {
@@ -43,7 +43,7 @@ namespace HelloWorldWeb.Models
             DateTime birthDate;
             birthDate = this.BirthDate;
 
-            DateTime zeroTime = new DateTime(1, 1, 1);
+            DateTime zeroTime = new (1, 1, 1);
             age = this.timeService.Now() - birthDate;
             int years = (zeroTime + age).Year - 1;
 
