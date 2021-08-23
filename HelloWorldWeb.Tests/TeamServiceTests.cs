@@ -12,32 +12,32 @@ namespace HelloWorldWeb.Tests
 
     public class TeamServiceTests
     {
-        private Mock<ITeamService> timeMock;
+        private IBroadcastService broadcastService;
 
-        private void InitializeTimeServiceMock()
-        {
-            this.timeMock = new Mock<ITeamService>();
-            //this.timeMock.Setup();//finish the mock for MessageHub
-        }
-      /*  [Fact]
+        [Fact]
          public void AddTeamMemberToTheTeam()
          {
-             // Assume
-             ITeamService teamService = this.timeMock.Object;
+            // Assume
+             Mock<IBroadcastService> broadcastServiceMock = new Mock<IBroadcastService>();
+             broadcastService = broadcastServiceMock.Object;
+             ITeamService teamService = new TeamService(broadcastService);
 
              // Act
-             teamService.AddTeamMember("Sorina");
+             teamService.AddTeamMember("Sorin");
 
              // Assert
              Assert.Equal(7, teamService.GetTeamInfo().TeamMembers.Count);
+            broadcastServiceMock.Verify(_ => _.TeamMemberAdded(It.IsAny<string>(), teamService.GetTeamInfo().TeamMembers.Count-1), Times.Once());
          }
 
          [Fact]
          public void DeleteTeamMember()
          {
-             // Assume
-             ITeamService teamService = this.timeMock.Object;
-             var targetTeamMember = teamService.GetTeamInfo().TeamMembers[0];
+            // Assume
+            Mock<IBroadcastService> broadcastServiceMock = new Mock<IBroadcastService>();
+            broadcastService = broadcastServiceMock.Object;
+            ITeamService teamService = new TeamService(broadcastService);
+            var targetTeamMember = teamService.GetTeamInfo().TeamMembers[0];
              var memberId = targetTeamMember.Id;
 
              // Act
@@ -50,9 +50,11 @@ namespace HelloWorldWeb.Tests
          [Fact]
          public void EditTeamMemberName()
          {
-             // Assume
-             ITeamService teamService = this.timeMock.Object;
-             var targetTeamMember = teamService.GetTeamInfo().TeamMembers[0];
+            // Assume
+            Mock<IBroadcastService> broadcastServiceMock = new Mock<IBroadcastService>();
+            broadcastService = broadcastServiceMock.Object;
+            ITeamService teamService = new TeamService(broadcastService);
+            var targetTeamMember = teamService.GetTeamInfo().TeamMembers[0];
              var memberId = targetTeamMember.Id;
 
              // Act
@@ -65,9 +67,11 @@ namespace HelloWorldWeb.Tests
          [Fact]
          public void CheckIdProblem()
          {
-             // Assume
-             ITeamService teamService = this.timeMock.Object;
-             var memberToBeDeleted = teamService.GetTeamInfo().TeamMembers[teamService.GetTeamInfo().TeamMembers.Count - 2];
+            // Assume
+            Mock<IBroadcastService> broadcastServiceMock = new Mock<IBroadcastService>();
+            broadcastService = broadcastServiceMock.Object;
+            ITeamService teamService = new TeamService(broadcastService);
+            var memberToBeDeleted = teamService.GetTeamInfo().TeamMembers[teamService.GetTeamInfo().TeamMembers.Count - 2];
              var newMemberName = "Boris";
 
              // Act
@@ -78,6 +82,6 @@ namespace HelloWorldWeb.Tests
              // Assert
              var member = teamService.GetTeamInfo().TeamMembers.Find(element => element.Name == newMemberName);
              Assert.Null(member);
-         }*/
+         }
      }
 }

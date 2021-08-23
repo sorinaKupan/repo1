@@ -13,9 +13,9 @@ namespace HelloWorldWeb.Services
     {
         private readonly TeamInfo teamInfo;
         private readonly ITimeService timeService;
-        private readonly IHubContext<MessageHub> messageHub;
+        private readonly IBroadcastService broadcastService;
 
-        public TeamService(IHubContext<MessageHub> messageHubContext)
+        public TeamService(IBroadcastService broadcastService)
         {
             this.teamInfo = new TeamInfo
             {
@@ -23,7 +23,7 @@ namespace HelloWorldWeb.Services
                 TeamMembers = new List<TeamMember>(),
             };
 
-            this.messageHub = messageHubContext;
+            this.broadcastService = broadcastService;
 
             this.AddTeamMember("Sorina");
             this.AddTeamMember("Tudor");
@@ -48,7 +48,7 @@ namespace HelloWorldWeb.Services
         {
             TeamMember teamMember = new (name, this.timeService);
             this.teamInfo.TeamMembers.Add(teamMember);
-            this.messageHub.Clients.All.SendAsync("TeamMemberAdded", teamMember.Name, teamMember.Id);
+            this.broadcastService.TeamMemberAdded(teamMember.Name, teamMember.Id);
             return teamMember.Id;
         }
 
