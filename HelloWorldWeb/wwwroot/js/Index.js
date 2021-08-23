@@ -9,9 +9,9 @@ $(document).ready(function () {
 
     connection.on("TeamMemberAdded", createNewLine);
     connection.on("TeamMemberDeleted", deleteMember);
+    connection.on("TeamMemberEdit", editMember);
 
     connection.start().then(function () {
-        alert("signalr connected");
     }).catch(function (err) {
         return console.error(err.toString());
     });
@@ -63,8 +63,6 @@ $(document).ready(function () {
             "name": name
         },
             success: function (result) {
-                targetMemberTag.find("memberName").text(name);
-                location.reload();
             }
         })
     })
@@ -115,4 +113,8 @@ var createNewLine = (name, id) => {
 
 var deleteMember = (id) => {
     $(`li[data-member-id=${id}]`).remove();
+}
+
+var editMember = (name, id) => {
+    $(`li[data-member-id=${id}]`).find(".memberName").text(name);
 }
