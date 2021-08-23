@@ -44,12 +44,6 @@ $(document).ready(function () {
                         "name": newcomerName
                     },
                     success: (resultPost) => {
-/*                        $("#list").append(
-                            `<li class="member" data-member-id="${resultPost}">
-                        <span class="memberName">${newcomerName}</span>
-                        <span class="delete fa fa-remove" id="deleteMember"></span>
-                        <span class="pencil fa fa-pencil"></span>
-                             </li>`);*/
                         $("#nameField").val("");
                         $('#createButton').prop('disabled', true);
                         setDelete();
@@ -115,11 +109,15 @@ function setEdit() {
 function createNewcomer(name, id) {
 
     // Remember string interpolation
+    createNewLine(name, id);
+    setDelete();
+    setEdit();
+}
+
+function createNewLine(name, id) {
     $("#list").append(`<li class="member" data-member-id="${id}">
                         <span class="memberName">${name}</span>
                         <span class="delete fa fa-remove" id="deleteMember"></span>
                         <span class="pencil fa fa-pencil"></span>
                              </li>`);
-    setDelete();
-    setEdit();
 }
