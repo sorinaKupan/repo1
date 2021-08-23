@@ -1,7 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿// <copyright file="BroadcastService.cs" company="Principal33">
+// Copyright (c) Principal33. All rights reserved.
+// </copyright>
+
 using Microsoft.AspNetCore.SignalR;
 
 namespace HelloWorldWeb.Services
