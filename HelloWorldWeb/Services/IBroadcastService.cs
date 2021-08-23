@@ -7,5 +7,6 @@ namespace HelloWorldWeb.Services
     public interface IBroadcastService
     {
         void TeamMemberAdded(string name, int id);
+        void TeamMemberDeleted(int id);
     }
 }

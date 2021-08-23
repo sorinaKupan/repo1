@@ -7,10 +7,9 @@ $(document).ready(function () {
     setDelete();
     setEdit();
 
-    connection.on("TeamMemberAdded", function (name, id) {
-        console.log(`New team member added: ${name}, ${id}`);
-        createNewcomer(name, id);
-    });
+    connection.on("TeamMemberAdded", createNewLine);
+    connection.on("TeamMemberDeleted", deleteMember);
+
     connection.start().then(function () {
         alert("signalr connected");
     }).catch(function (err) {
@@ -46,8 +45,6 @@ $(document).ready(function () {
                     success: (resultPost) => {
                         $("#nameField").val("");
                         $('#createButton').prop('disabled', true);
-                        setDelete();
-                        setEdit();
                     }
                 })
             }
@@ -89,7 +86,6 @@ function setDelete(){
             },
             success: (result) => {
                 console.log("delete:" + id);
-                $(this).parent().remove();
             }
         })
     }
@@ -106,18 +102,17 @@ function setEdit() {
         $('#editClassmate').modal('show');
     })
 }
-function createNewcomer(name, id) {
 
-    // Remember string interpolation
-    createNewLine(name, id);
-    setDelete();
-    setEdit();
-}
-
-function createNewLine(name, id) {
+var createNewLine = (name, id) => {
     $("#list").append(`<li class="member" data-member-id="${id}">
                         <span class="memberName">${name}</span>
                         <span class="delete fa fa-remove" id="deleteMember"></span>
                         <span class="pencil fa fa-pencil"></span>
                              </li>`);
+    setDelete();
+    setEdit();
+}
+
+var deleteMember = (id) => {
+    $(`li[data-member-id=${id}]`).remove();
 }
