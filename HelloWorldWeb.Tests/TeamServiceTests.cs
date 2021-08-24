@@ -27,7 +27,7 @@ namespace HelloWorldWeb.Tests
 
              // Assert
              Assert.Equal(7, teamService.GetTeamInfo().TeamMembers.Count);
-            broadcastServiceMock.Verify(_ => _.TeamMemberAdded(It.IsAny<string>(), teamService.GetTeamInfo().TeamMembers.Count-1), Times.Once());
+            broadcastServiceMock.Verify(_ => _.TeamMemberAdded(It.IsAny<string>(), It.IsAny<int>()), Times.AtLeastOnce());
          }
 
          [Fact]
