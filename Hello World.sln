@@ -10,7 +10,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{98E1B501-C304-42A3-9E41-EEF0C2BAEE08}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
-		dotnet.yml = dotnet.yml
 		README.md = README.md
 	EndProjectSection
 EndProject
