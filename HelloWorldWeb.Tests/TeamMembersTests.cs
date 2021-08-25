@@ -36,7 +36,7 @@ namespace HelloWorldWeb.Tests
 
             //Assert
 
-            Assert.Equal(5, teamService.GetTeamInfo().TeamMembers.Count);
+            Assert.Equal(6, teamService.GetTeamInfo().TeamMembers.Count);
         }
 
         [Fact]
@@ -44,10 +44,15 @@ namespace HelloWorldWeb.Tests
         {
             //Assume
             ITeamService teamService = new TeamService();
+            int givenId = 2000;
+            string newName = "NewName";
+            TeamMember newTeamMember = new TeamMember(givenId, "New");
+            teamService.AddTeamMember(newTeamMember);
             //Act
-            teamService.EditTeamMemberName(3, "NewName");
+            teamService.EditTeamMemberName(givenId, newName);
+
             //Assert
-            Assert.Equal("NewName", teamService.GetTeamMemberById(3).Name);
+            Assert.Equal("NewName", teamService.GetTeamMemberById(givenId).Name);
            
         }
 
