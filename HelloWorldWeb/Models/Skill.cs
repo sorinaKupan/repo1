@@ -1,5 +1,5 @@
-// <copyright file="Skill.cs" company="PlaceholderCompany">
-// Copyright (c) PlaceholderCompany. All rights reserved.
+// <copyright file="Skill.cs" company="Principal33">
+// Copyright (c) Principal33. All rights reserved.
 // </copyright>
 
 namespace HelloWorldWeb.Models

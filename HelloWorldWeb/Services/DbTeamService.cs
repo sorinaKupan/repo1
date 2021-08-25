@@ -1,27 +1,30 @@
-// <copyright file="DbTeamService.cs" company="PlaceholderCompany">
-// Copyright (c) PlaceholderCompany. All rights reserved.
+// <copyright file="DbTeamService.cs" company="Principal33">
+// Copyright (c) Principal33. All rights reserved.
 // </copyright>
+
+using System.Collections.Generic;
+using System.Linq;
+using HelloWorldWeb.Data;
+using HelloWorldWeb.Models;
 
 namespace HelloWorldWeb.Services
 {
-    using System.Collections.Generic;
-    using System.Linq;
-    using HelloWorldWeb.Data;
-    using HelloWorldWeb.Models;
-
     public class DbTeamService : ITeamService
     {
         private readonly ApplicationDbContext context;
+        private readonly IBroadcastService broadcastService;
 
-        public DbTeamService(ApplicationDbContext context)
+        public DbTeamService(ApplicationDbContext context, IBroadcastService broadcastService)
         {
             this.context = context;
+            this.broadcastService = broadcastService;
         }
 
         public int AddTeamMember(TeamMember teamMember)
         {
             this.context.Add(teamMember);
             this.context.SaveChanges();
+            this.broadcastService.TeamMemberAdded(teamMember.Name, teamMember.Id);
             return teamMember.Id;
         }
 
@@ -30,6 +33,7 @@ namespace HelloWorldWeb.Services
             var teamMember = this.context.TeamMembers.Find(id);
             this.context.TeamMembers.Remove(teamMember);
             this.context.SaveChanges();
+            this.broadcastService.TeamMemberDeleted(id);
         }
 
         public int EditTeamMemberName(int id, string name)
@@ -44,6 +48,7 @@ namespace HelloWorldWeb.Services
             }
 
             this.context.SaveChanges();
+            this.broadcastService.TeamMemberEdit(id, name);
             return returnId;
         }
 

@@ -1,8 +1,20 @@
 // This JS file now uses jQuery. Pls see here: https://jquery.com/
+
 $(document).ready(function () {
     // see https://api.jquery.com/click/
+    var connection = new signalR.HubConnectionBuilder().withUrl("/messagehub").build();
+
     setDelete();
     setEdit();
+
+    connection.on("TeamMemberAdded", createNewLine);
+    connection.on("TeamMemberDeleted", deleteMember);
+    connection.on("TeamMemberEdit", editMember);
+
+    connection.start().then(function () {
+    }).catch(function (err) {
+        return console.error(err.toString());
+    });
 
     $('#nameField').on('input change', function () {
         if ($(this).val() != '') {
@@ -31,16 +43,8 @@ $(document).ready(function () {
                         "name": newcomerName
                     },
                     success: (resultPost) => {
-                        $("#list").append(
-                            `<li class="member" data-member-id="${resultPost}">
-                        <span class="memberName">${newcomerName}</span>
-                        <span class="deleteMember fa fa-remove"></span>
-                        <span class="pencil fa fa-pencil"></span>
-                             </li>`);
                         $("#nameField").val("");
                         $('#createButton').prop('disabled', true);
-                        setDelete();
-                        setEdit();
                     }
                 })
             }
@@ -59,8 +63,6 @@ $(document).ready(function () {
             "name": name
         },
             success: function (result) {
-                targetMemberTag.find("memberName").text(name);
-                location.reload();
             }
         })
     })
@@ -72,9 +74,8 @@ $(document).ready(function () {
 });
 
 function setDelete(){
-    $("#list").on("click", ".deleteMember", function () {
-        var targetMemberTag = $(this).closest('li');
-        var id = targetMemberTag.attr('data-member-id');
+    $(".delete").click(function () {
+        var id = $(this).parent().attr("data-member-id");
         $.ajax({
             method: "DELETE",
             url: "/Home/DeleteTeamMember",
@@ -83,7 +84,6 @@ function setDelete(){
             },
             success: (result) => {
                 console.log("delete:" + id);
-                targetMemberTag.remove();
             }
         })
     }
@@ -99,4 +99,22 @@ function setEdit() {
         $('#classmateName').val(currentName);
         $('#editClassmate').modal('show');
     })
+}
+
+var createNewLine = (name, id) => {
+    $("#list").append(`<li class="member" data-member-id="${id}">
+                        <span class="memberName">${name}</span>
+                        <span class="delete fa fa-remove" id="deleteMember"></span>
+                        <span class="pencil fa fa-pencil"></span>
+                             </li>`);
+    setDelete();
+    setEdit();
+}
+
+var deleteMember = (id) => {
+    $(`li[data-member-id=${id}]`).remove();
+}
+
+var editMember = (name, id) => {
+    $(`li[data-member-id=${id}]`).find(".memberName").text(name);
 }

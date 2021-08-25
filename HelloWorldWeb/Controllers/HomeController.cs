@@ -1,26 +1,24 @@
-﻿// <copyright file="HomeController.cs" company="PlaceholderCompany">
-// Copyright (c) PlaceholderCompany. All rights reserved.
+﻿// <copyright file="HomeController.cs" company="Principal33">
+// Copyright (c) Principal33. All rights reserved.
 // </copyright>
 
-namespace HelloWorldWeb.Controllers
-{
-    using System.Diagnostics;
-    using System.Linq;
-    using HelloWorldWeb.Models;
-    using HelloWorldWeb.Services;
-    using Microsoft.AspNetCore.Mvc;
-    using Microsoft.Extensions.Logging;
+using System.Diagnostics;
+using System.Linq;
+using HelloWorldWeb.Models;
+using HelloWorldWeb.Services;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
-    public class HomeController : Controller
+public class HomeController : Controller
     {
 #pragma warning disable IDE0052 // Remove unread private members
-        private readonly ILogger<HomeController> _logger;
+        private readonly ILogger<HomeController> logger;
 #pragma warning restore IDE0052 // Remove unread private members
         private readonly ITeamService teamService;
 
         public HomeController(ILogger<HomeController> logger, ITeamService teamService)
         {
-            this._logger = logger;
+            this.logger = logger;
             this.teamService = teamService;
         }
 
@@ -66,5 +64,9 @@ namespace HelloWorldWeb.Controllers
         {
             return this.View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? this.HttpContext.TraceIdentifier });
         }
+
+        public IActionResult Chat()
+        {
+            return this.View();
+        }
     }
-}

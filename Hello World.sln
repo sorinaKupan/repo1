@@ -10,9 +10,12 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{98E1B501-C304-42A3-9E41-EEF0C2BAEE08}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
+		README.md = README.md
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HelloWorldWeb.Tests", "HelloWorldWeb.Tests\HelloWorldWeb.Tests.csproj", "{2F573670-07BC-4B76-BDF0-7A55BC101322}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "C-Features", "C-Features\C-Features.csproj", "{839D7456-05BA-4667-97FF-7FCE4E60951A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -32,6 +35,10 @@ Global
 		{2F573670-07BC-4B76-BDF0-7A55BC101322}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2F573670-07BC-4B76-BDF0-7A55BC101322}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2F573670-07BC-4B76-BDF0-7A55BC101322}.Release|Any CPU.Build.0 = Release|Any CPU
+		{839D7456-05BA-4667-97FF-7FCE4E60951A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{839D7456-05BA-4667-97FF-7FCE4E60951A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{839D7456-05BA-4667-97FF-7FCE4E60951A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{839D7456-05BA-4667-97FF-7FCE4E60951A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,2 +1,3 @@
 [*.cs]
 dotnet_diagnostic.SA1600.severity=silent
+dotnet_diagnostic.SA0001.severity=warning

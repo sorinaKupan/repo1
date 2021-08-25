@@ -1,16 +1,16 @@
-﻿// <copyright file="SkillsController.cs" company="PlaceholderCompany">
-// Copyright (c) PlaceholderCompany. All rights reserved.
+﻿// <copyright file="SkillsController.cs" company="Principal33">
+// Copyright (c) Principal33. All rights reserved.
 // </copyright>
+
+using System.Linq;
+using System.Threading.Tasks;
+using HelloWorldWeb.Data;
+using HelloWorldWeb.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace HelloWorldWeb.Controllers
 {
-    using System.Linq;
-    using System.Threading.Tasks;
-    using HelloWorldWeb.Data;
-    using HelloWorldWeb.Models;
-    using Microsoft.AspNetCore.Mvc;
-    using Microsoft.EntityFrameworkCore;
-
     public class SkillsController : Controller
     {
         private readonly ApplicationDbContext context;

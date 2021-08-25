@@ -1,30 +1,34 @@
-﻿// <copyright file="TeamService.cs" company="PlaceholderCompany">
-// Copyright (c) PlaceholderCompany. All rights reserved.
+﻿// <copyright file="TeamService.cs" company="Principal33">
+// Copyright (c) Principal33. All rights reserved.
 // </copyright>
+
+using System;
+using System.Collections.Generic;
+using HelloWorldWeb.Models;
 
 namespace HelloWorldWeb.Services
 {
-    using System;
-    using System.Collections.Generic;
-    using HelloWorldWeb.Models;
-
     public class TeamService : ITeamService
     {
         private readonly TeamInfo teamInfo;
+        private readonly IBroadcastService broadcastService;
 
-        public TeamService()
+        public TeamService(IBroadcastService broadcastService)
         {
             this.teamInfo = new TeamInfo
             {
                 Name = "Team 2",
                 TeamMembers = new List<TeamMember>(),
             };
-            this.teamInfo.TeamMembers.Add(new TeamMember("Iuliana"));
-            this.teamInfo.TeamMembers.Add(new TeamMember("Ema"));
-            this.teamInfo.TeamMembers.Add(new TeamMember("Radu"));
-            this.teamInfo.TeamMembers.Add(new TeamMember("Patrick"));
-            this.teamInfo.TeamMembers.Add(new TeamMember("Tudor"));
-            this.teamInfo.TeamMembers.Add(new TeamMember("Fineas"));
+
+            this.broadcastService = broadcastService;
+
+            this.AddTeamMember(new TeamMember("Sorina"));
+            this.AddTeamMember(new TeamMember("Tudor"));
+            this.AddTeamMember(new TeamMember("Ema"));
+            this.AddTeamMember(new TeamMember("Patrick"));
+            this.AddTeamMember(new TeamMember("Radu"));
+            this.AddTeamMember(new TeamMember("Fineas"));
         }
 
         public TeamInfo GetTeamInfo()
@@ -41,17 +45,20 @@ namespace HelloWorldWeb.Services
         public int AddTeamMember(TeamMember teamMember)
         {
             this.teamInfo.TeamMembers.Add(teamMember);
+            this.broadcastService.TeamMemberAdded(teamMember.Name, teamMember.Id);
             return teamMember.Id;
         }
 
         public void DeleteTeamMember(int id)
         {
             this.teamInfo.TeamMembers.Remove(this.GetTeamMemberById(id));
+            this.broadcastService.TeamMemberDeleted(id);
         }
 
         public int EditTeamMemberName(int id, string name)
         {
             this.GetTeamMemberById(id).Name = name;
+            this.broadcastService.TeamMemberEdit(id, name);
             return id;
         }
     }
