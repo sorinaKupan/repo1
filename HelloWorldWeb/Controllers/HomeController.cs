@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Linq;
 using HelloWorldWeb.Models;
 using HelloWorldWeb.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -23,6 +24,7 @@ public class HomeController : Controller
         }
 
         [HttpPost]
+        [Authorize]
         public int AddTeamMember(string name)
         {
             TeamMember teamMember = new TeamMember();
@@ -31,12 +33,14 @@ public class HomeController : Controller
         }
 
         [HttpDelete]
+        [Authorize]
         public void DeleteTeamMember(int id)
         {
             this.teamService.DeleteTeamMember(id);
         }
 
         [HttpPost]
+        [Authorize]
         public int EditTeamMemberName(int id, string name)
         {
             return this.teamService.EditTeamMemberName(id, name);
