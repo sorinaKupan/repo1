@@ -6,11 +6,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using HelloWorldWeb.Data;
 using HelloWorldWeb.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace HelloWorldWeb.Controllers
 {
+    [Authorize]
     public class SkillsController : Controller
     {
         private readonly ApplicationDbContext context;
