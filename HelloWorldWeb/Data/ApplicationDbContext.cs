@@ -4,6 +4,7 @@
 
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using HelloWorldWeb.Models;
 
 namespace HelloWorldWeb.Data
 {
@@ -17,5 +18,6 @@ namespace HelloWorldWeb.Data
         public DbSet<HelloWorldWeb.Models.Skill> Skill { get; set; }
 
         public DbSet<HelloWorldWeb.Models.TeamMember> TeamMembers { get; set; }
+
     }
 }
