@@ -1,19 +1,24 @@
-﻿using System;
+﻿// <copyright file="UsersController.cs" company="Principal33">
+// Copyright (c) Principal33. All rights reserved.
+// </copyright>
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
 using HelloWorldWeb.Data;
 using HelloWorldWeb.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 
 namespace HelloWorldWeb.Controllers
 {
     public class UsersController : Controller
     {
-        UserManager<IdentityUser> userManager;
+        private readonly UserManager<IdentityUser> userManager;
+
         public UsersController(UserManager<IdentityUser> userManager)
         {
             this.userManager = userManager;
@@ -22,21 +27,23 @@ namespace HelloWorldWeb.Controllers
         // GET: Users
         public async Task<IActionResult> Index()
         {
-            return View(await userManager.Users.ToListAsync());
+            return this.View(await this.userManager.Users.ToListAsync());
         }
 
         public async Task<IActionResult> AssignAdminRole(string id)
         {
-            var user = await userManager.FindByIdAsync(id);
-            await userManager.AddToRoleAsync(user, "Administrators");
-            return View("Index", await userManager.Users.ToListAsync());
+            var user = await this.userManager.FindByIdAsync(id);
+            await this.userManager.AddToRoleAsync(user, "Administrators");
+            return this.RedirectToAction(nameof(this.Index));
         }
+
         public async Task<IActionResult> AssignUsualRole(string id)
         {
-            var user = await userManager.FindByIdAsync(id);
-            await userManager.RemoveFromRoleAsync(user, "Administrators");
-            return View("Index", await userManager.Users.ToListAsync());
+            var user = await this.userManager.FindByIdAsync(id);
+            await this.userManager.RemoveFromRoleAsync(user, "Administrators");
+            return this.RedirectToAction(nameof(this.Index));
         }
+
         /* // GET: Users/Details/5
          public async Task<IActionResult> Details(int? id)
          {

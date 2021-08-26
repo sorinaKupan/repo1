@@ -31,7 +31,7 @@ public class Startup
 
         public IConfiguration Configuration { get; }
 
-    public static string ConvertHerokuStringToAspnetString(string herokuConnectionString)
+        public static string ConvertHerokuStringToAspnetString(string herokuConnectionString)
         {
             var databaseUri = new Uri(herokuConnectionString);
             var databaseUriUsername = databaseUri.UserInfo;
@@ -68,7 +68,7 @@ public class Startup
                 c.IncludeXmlComments(xmlPath, includeControllerXmlComments: true);
         });
 
-        AssignRoleProgramaticaly(services.BuildServiceProvider());
+            this.AssignRoleProgramaticaly(services.BuildServiceProvider());
     }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -108,7 +108,7 @@ public class Startup
             });
         }
 
-    private async void AssignRoleProgramaticaly(IServiceProvider services)
+        private async void AssignRoleProgramaticaly(IServiceProvider services)
     {
         var userManager = services.GetRequiredService<UserManager<IdentityUser>>();
         var user = await userManager.FindByEmailAsync("sorinakupan3@gmail.com");

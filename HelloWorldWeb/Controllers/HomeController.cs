@@ -25,7 +25,8 @@ public class HomeController : Controller
         }
 
         [HttpPost]
-        //[Authorize]
+
+        // [Authorize]
         public int AddTeamMember(string name)
         {
             TeamMember teamMember = new TeamMember();
@@ -34,14 +35,16 @@ public class HomeController : Controller
         }
 
         [HttpDelete]
-        //[Authorize]
+
+        // [Authorize]
         public void DeleteTeamMember(int id)
         {
             this.teamService.DeleteTeamMember(id);
         }
 
         [HttpPost]
-        //[Authorize]
+
+        // [Authorize]
         public int EditTeamMemberName(int id, string name)
         {
             return this.teamService.EditTeamMemberName(id, name);
