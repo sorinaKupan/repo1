@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace HelloWorldWeb.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Administrators")]
     public class SkillsController : Controller
     {
         private readonly ApplicationDbContext context;
