@@ -31,7 +31,7 @@ public class Startup
 
         public IConfiguration Configuration { get; }
 
-        public static string ConvertHerokuStringToAspnetString(string herokuConnectionString)
+    public static string ConvertHerokuStringToAspnetString(string herokuConnectionString)
         {
             var databaseUri = new Uri(herokuConnectionString);
             var databaseUriUsername = databaseUri.UserInfo;
@@ -67,6 +67,8 @@ public class Startup
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 c.IncludeXmlComments(xmlPath, includeControllerXmlComments: true);
         });
+
+        AssignRoleProgramaticaly(services.BuildServiceProvider());
     }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -105,4 +107,11 @@ public class Startup
                 endpoints.MapRazorPages();
             });
         }
+
+    private async void AssignRoleProgramaticaly(IServiceProvider services)
+    {
+        var userManager = services.GetRequiredService<UserManager<IdentityUser>>();
+        var user = await userManager.FindByEmailAsync("sorinakupan3@gmail.com");
+        await userManager.AddToRoleAsync(user, "Administrators");
     }
+}
