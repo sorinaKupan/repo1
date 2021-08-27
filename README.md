@@ -1,6 +1,7 @@
-# My first line 
+# How to run/deploy 
 
-##How to build in docker
+## How to build in docker
+
 Build the image
 ```
 docker build . -t imageName
@@ -18,12 +19,17 @@ heroku login
 heroku container:login
 ```
 
+Create an app in Heroku (skip this if you already have created an app)
+```
+heroku create
+```
+
 Push container
 ```
-heroku container:push -a borys-internship-class web
+heroku container:push -a sorinahelloworldweb web
 ```
 
 Release the container
 ```
-heroku container:release -a app-helloworld-kupan web
+heroku container:release -a sorinahelloworldweb web
 ```

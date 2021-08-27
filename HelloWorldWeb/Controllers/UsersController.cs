@@ -30,15 +30,16 @@ namespace HelloWorldWeb.Controllers
         public async Task<IActionResult> Index()
         {
             List<UserWithRole> userWithRoles = new List<UserWithRole>();
-            var allUsers = await userManager.Users.ToListAsync();
+            var allUsers = await this.userManager.Users.ToListAsync();
 
-            var administrators = await userManager.GetUsersInRoleAsync("Administrators");
+            var administrators = await this.userManager.GetUsersInRoleAsync("Administrators");
             var commonUsers = allUsers.Except(administrators).ToList();
-            foreach(var admin in administrators)
+            foreach (var admin in administrators)
             {
                 UserWithRole dummy = new UserWithRole() { UserId = admin.Id, UserName = admin.UserName, RoleName = "Administrators" };
                 userWithRoles.Add(dummy);
             }
+
             foreach (var user in commonUsers)
             {
                 UserWithRole dummy = new UserWithRole() { UserId = user.Id, UserName = user.UserName, RoleName = "Users" };
