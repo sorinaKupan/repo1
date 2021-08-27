@@ -1,7 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿// <copyright file="UserRoleBroadcastService.cs" company="Principal33">
+// Copyright (c) Principal33. All rights reserved.
+// </copyright>
+
 using Microsoft.AspNetCore.SignalR;
 
 namespace HelloWorldWeb.Services
@@ -14,6 +14,7 @@ namespace HelloWorldWeb.Services
         {
             this.messageHub = messageHub;
         }
+
         public void AssignedAdminRole(string id)
         {
             this.messageHub.Clients.All.SendAsync("AssignedAdminRole", id);

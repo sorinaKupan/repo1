@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿// <copyright file="IUserRoleBroadcastService.cs" company="Principal33">
+// Copyright (c) Principal33. All rights reserved.
+// </copyright>
 
 namespace HelloWorldWeb.Services
 {
