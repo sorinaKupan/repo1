@@ -47,6 +47,7 @@ public class Startup
             services.AddScoped<ITeamService, DbTeamService>();
             services.AddSingleton<ITimeService, TimeService>();
             services.AddSingleton<IBroadcastService, BroadcastService>();
+            services.AddSingleton<IUserRoleBroadcastService, UserRoleBroadcastService>();
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseNpgsql(
                     this.Configuration.GetConnectionString("DefaultConnection")));
