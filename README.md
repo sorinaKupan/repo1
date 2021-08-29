@@ -1,4 +1,7 @@
-# Link to heroku deployed app: https://sorinahelloworldweb.herokuapp.com/
+# Link to heroku deployed app: 
+```
+https://sorinahelloworldweb.herokuapp.com/
+```
 
 # Github Actions CI/CD Flow
 ```
