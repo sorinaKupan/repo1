@@ -10,8 +10,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace HelloWorldWeb.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210825090706_Initial")]
-    partial class Initial
+    [Migration("20210829135838_InitialMigration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

@@ -29,20 +29,20 @@ namespace HelloWorldWeb.Controllers
         // GET: Users
         public async Task<IActionResult> Index()
         {
-            List<UserWithRole> userWithRoles = new List<UserWithRole>();
+            List<UserWithRole> userWithRoles = new ();
             var allUsers = await this.userManager.Users.ToListAsync();
 
-            var administrators = await this.userManager.GetUsersInRoleAsync("Administrators");
+            var administrators = await this.userManager.GetUsersInRoleAsync("Administrator");
             var commonUsers = allUsers.Except(administrators).ToList();
             foreach (var admin in administrators)
             {
-                UserWithRole dummy = new UserWithRole() { UserId = admin.Id, UserName = admin.UserName, RoleName = "Administrators" };
+                UserWithRole dummy = new () { UserId = admin.Id, UserName = admin.UserName, RoleName = "Administrator" };
                 userWithRoles.Add(dummy);
             }
 
             foreach (var user in commonUsers)
             {
-                UserWithRole dummy = new UserWithRole() { UserId = user.Id, UserName = user.UserName, RoleName = "Users" };
+                UserWithRole dummy = new () { UserId = user.Id, UserName = user.UserName, RoleName = "User" };
                 userWithRoles.Add(dummy);
             }
 
@@ -52,16 +52,16 @@ namespace HelloWorldWeb.Controllers
         public async Task<IActionResult> AssignAdminRole(string id)
         {
             var user = await this.userManager.FindByIdAsync(id);
-            await this.userManager.RemoveFromRoleAsync(user, "Users");
-            await this.userManager.AddToRoleAsync(user, "Administrators");
+            await this.userManager.RemoveFromRoleAsync(user, "User");
+            await this.userManager.AddToRoleAsync(user, "Administrator");
             return this.RedirectToAction(nameof(this.Index));
         }
 
         public async Task<IActionResult> AssignUsualRole(string id)
         {
             var user = await this.userManager.FindByIdAsync(id);
-            await this.userManager.RemoveFromRoleAsync(user, "Administrators");
-            await this.userManager.AddToRoleAsync(user, "Users");
+            await this.userManager.RemoveFromRoleAsync(user, "Administrator");
+            await this.userManager.AddToRoleAsync(user, "User");
             return this.RedirectToAction(nameof(this.Index));
         }
     }

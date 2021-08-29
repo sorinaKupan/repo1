@@ -3,18 +3,14 @@
 // </copyright>
 
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Reflection;
-using System.Threading.Tasks;
 using HelloWorldWeb;
 using HelloWorldWeb.Data;
 using HelloWorldWeb.Services;
 using HelloWorldWebApp.Controllers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -113,6 +109,6 @@ public class Startup
     {
         var userManager = services.GetRequiredService<UserManager<IdentityUser>>();
         var user = await userManager.FindByEmailAsync("sorinakupan3@gmail.com");
-        await userManager.AddToRoleAsync(user, "Administrators");
+        await userManager.AddToRoleAsync(user, "Administrator");
     }
 }
