@@ -1,16 +1,18 @@
-# Link to heroku deployed app: 
+## Link to heroku deployed app: 
 ```
 https://sorinahelloworldweb.herokuapp.com/
 ```
 
-# Github Actions CI/CD Flow
+## Github CI/CD 
 ```
-You can modify the version in the dotnet-desktop.yml file.
+The workflow of the app : [![.NET](https://github.com/sorinaKupan/repo1/actions/workflows/dotnet-desktop.yml/badge.svg)](https://github.com/sorinaKupan/repo1/actions/workflows/dotnet-desktop.yml)
 ```
-# Database
+
+##Database
 ```
 Set your own local database in the default string connection in "appsettings.json".
 ```
+
 # How to run/deploy 
 
 ## How to build in docker
