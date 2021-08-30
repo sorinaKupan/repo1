@@ -5,7 +5,7 @@ https://sorinahelloworldweb.herokuapp.com/
 
 ## Github CI/CD 
 ```
-The workflow of the app : [![.NET](https://github.com/sorinaKupan/repo1/actions/workflows/dotnet-desktop.yml/badge.svg)](https://github.com/sorinaKupan/repo1/actions/workflows/dotnet-desktop.yml)
+The workflow of the app : https://github.com/sorinaKupan/repo1/actions/workflows/dotnet-desktop.yml
 ```
 
 ##Database
